@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Lemi
-//
-//  Created by Dimas Putra Aryawan on 29/04/26.
-//
-
 import SwiftUI
 
 struct ContentView: View {
