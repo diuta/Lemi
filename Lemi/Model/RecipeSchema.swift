@@ -24,7 +24,6 @@ enum MainIngredient: String, CaseIterable {
     case chicken = "Chicken"
     case beef = "Beef"
     case egg = "Egg"
-    case vegetableOther = "Vegetable/Other"
 }
 
 // MARK: - 2. Model Utama Resep
