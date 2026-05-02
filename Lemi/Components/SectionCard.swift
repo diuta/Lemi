@@ -7,12 +7,34 @@
 
 import SwiftUI
 
-struct SectionCard: View {
+struct SectionCard<Content: View>: View {
+    var title: String
+    var bgColor: Color
+    
+    @ViewBuilder var content: Content
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading, spacing: 10) {
+            Text(title)
+                .font(Font.AppTheme.sectionHeader)
+                .foregroundColor(Color.AppTheme.textSecondary)
+            
+            content
+  
+        }
+        .padding(20)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(bgColor)
+        .cornerRadius(20)
     }
+    
 }
 
+
 #Preview {
-    SectionCard()
+    SectionCard(title: "Sample Section", bgColor: .blue) {
+        Text("Content goes here")
+            .foregroundColor(.white)
+    }
+    .padding()
 }

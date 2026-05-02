@@ -28,7 +28,7 @@ enum MainIngredient: String, CaseIterable {
 }
 
 // MARK: - 2. Model Utama Resep
-struct RecipeModel: Identifiable {
+struct RecipeModel: Identifiable, Hashable {
     let id = UUID()
     let title: String
     let ingredients: [String]

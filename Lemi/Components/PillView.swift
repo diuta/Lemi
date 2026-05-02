@@ -8,11 +8,32 @@
 import SwiftUI
 
 struct PillView: View {
+    var text: String
+    var bgColor: Color
+    var isSelected: Bool = false
+    var action: () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: action) {
+            Text(text)
+                .font(Font.AppTheme.pillText)
+                .foregroundColor(isSelected ? bgColor : Color.AppTheme.textSecondary)
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 10)
+                .background(isSelected ? Color.AppTheme.textSecondary : bgColor)
+                .clipShape(Capsule())
+                .animation(.easeInOut(duration: 0.2), value: isSelected)
+            
+        }
+        .buttonStyle(PlainButtonStyle())
     }
 }
 
 #Preview {
-    PillView()
+    VStack {
+        PillView(text: "Selected", bgColor: .pink, isSelected: true) {}
+        PillView(text: "Unselected",  bgColor: .pink, isSelected: false) {}
+    }
+    .padding()
 }

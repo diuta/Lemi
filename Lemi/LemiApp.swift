@@ -4,7 +4,7 @@ import SwiftUI
 struct LemiApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GeneratorView()
         }
     }
 }
