@@ -21,7 +21,7 @@ struct RecipeView: View {
                 VStack(spacing: 20) {
                     AsyncImage(
                         url: URL(
-                            string: entry.imageLink!
+                            string: entry.imageLink ?? ""
                         )
                     ) { image in
                         image
