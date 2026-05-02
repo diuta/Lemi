@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-
-
 struct GeneratorView: View {
-    @State private var selectedDifficulty: String? = nil
-    @State private var selectedIngredient: String? = nil
-    @State private var selectedTaste: String? = nil
+    @State private var selectedDifficulty: Difficulty? = nil
+    @State private var selectedIngredient: MainIngredient? = nil
+    @State private var selectedTaste: TasteProfile? = nil
+
     @State private var generatedRecipe: RecipeModel? = nil
+
     @State private var showErrorAlert: Bool = false
-    
-    let difficulties = ["Easy", "Medium", "Hard"]
-    let ingredients = ["Chicken", "Beef", "Egg"]
-    let tastes = ["Savory", "Sweet", "Spicy"]
-    
+
+    let difficulties = Difficulty.allCases
+    let ingredients = MainIngredient.allCases
+    let tastes = TasteProfile.allCases
+
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
@@ -28,44 +28,71 @@ struct GeneratorView: View {
                     .foregroundColor(Color.AppTheme.textPrimary)
                     .padding()
                 VStack(spacing: 15) {
-                    SectionCard(title: "Difficulty", bgColor: Color.AppTheme.pinkCard) {
+                    SectionCard(
+                        title: "Difficulty",
+                        bgColor: Color.AppTheme.pinkCard
+                    ) {
                         HStack(spacing: 5) {
                             ForEach(difficulties, id: \.self) { difficulty in
-                                PillView(text: difficulty, bgColor: Color.AppTheme.pinkPill, isSelected: selectedDifficulty == difficulty) {
-                                    selectedDifficulty = selectedDifficulty == difficulty ? nil : difficulty
+                                SelectionPill(
+                                    text: difficulty.rawValue,
+                                    bgColor: Color.AppTheme.pinkPill,
+                                    isSelected: selectedDifficulty == difficulty
+                                ) {
+                                    selectedDifficulty =
+                                        selectedDifficulty == difficulty
+                                        ? nil : difficulty
                                 }
                             }
                         }
-                        
+
                     }
-                    SectionCard(title: "Main Ingredient", bgColor: Color.AppTheme.blueCard) {
+                    SectionCard(
+                        title: "Main Ingredient",
+                        bgColor: Color.AppTheme.blueCard
+                    ) {
                         HStack(spacing: 5) {
                             ForEach(ingredients, id: \.self) { ingredient in
-                                PillView(text: ingredient, bgColor: Color.AppTheme.bluePill, isSelected: selectedIngredient == ingredient) {
-                                    selectedIngredient = selectedIngredient == ingredient ? nil : ingredient
+                                SelectionPill(
+                                    text: ingredient.rawValue,
+                                    bgColor: Color.AppTheme.bluePill,
+                                    isSelected: selectedIngredient == ingredient
+                                ) {
+                                    selectedIngredient =
+                                        selectedIngredient == ingredient
+                                        ? nil : ingredient
                                 }
                             }
                         }
-                        
+
                     }
-                    SectionCard(title: "Taste Profile", bgColor: Color.AppTheme.greenCard) {
+                    SectionCard(
+                        title: "Taste Profile",
+                        bgColor: Color.AppTheme.greenCard
+                    ) {
                         HStack(spacing: 5) {
-                            ForEach(tastes, id: \.self) { taste in PillView(text: taste, bgColor: Color.AppTheme.greenPill, isSelected: selectedTaste == taste) {
-                                selectedTaste = selectedTaste == taste ? nil : taste
-                            }
+                            ForEach(tastes, id: \.self) { taste in
+                                SelectionPill(
+                                    text: taste.rawValue,
+                                    bgColor: Color.AppTheme.greenPill,
+                                    isSelected: selectedTaste == taste
+                                ) {
+                                    selectedTaste =
+                                        selectedTaste == taste ? nil : taste
+                                }
                             }
                         }
-                        
+
                     }
-                    
+
                     Spacer()
-                    
+
                     Button(action: {
-                        let tasteEnum = TasteProfile(rawValue: selectedTaste ?? "")
-                        let difficultyEnum = Difficulty(rawValue: selectedDifficulty ?? "")
-                        let ingredientEnum = MainIngredient(rawValue: selectedIngredient ?? "")
-                        
-                        if let result = RecipeGenerator.generate(taste: tasteEnum, difficulty: difficultyEnum, ingredient: ingredientEnum) {
+                        if let result = RecipeGenerator.generate(
+                            taste: selectedTaste,
+                            difficulty: selectedDifficulty,
+                            ingredient: selectedIngredient
+                        ) {
                             generatedRecipe = result
                         } else {
                             showErrorAlert = true
@@ -85,20 +112,20 @@ struct GeneratorView: View {
             }
             .background(Color.AppTheme.mainBackground.ignoresSafeArea())
             .navigationDestination(item: $generatedRecipe) {
-                recipe in RecipeView(entry: recipe, otherRecipes: SampleData.recipes)
+                recipe in
+                RecipeView(entry: recipe, otherRecipes: SampleData.recipes)
             }
             .alert("No Recipe Found", isPresented: $showErrorAlert) {
-                Button("Got it", role: .cancel) { }
+                Button("Got it", role: .cancel) {}
             } message: {
-                Text("There are no combinations available yet. Please select another set of preferences.")
+                Text(
+                    "There are no combinations available yet. Please select another set of preferences."
+                )
             }
-            
+
         }
     }
 }
-
-
-
 
 #Preview {
     GeneratorView()

@@ -10,7 +10,9 @@ import SwiftUI
 struct RecipeView: View {
     let entry: RecipeModel
     let otherRecipes: [RecipeModel]
+    
     @State private var selectedTab = "Steps"
+    
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -19,7 +21,7 @@ struct RecipeView: View {
                 VStack(spacing: 20) {
                     AsyncImage(
                         url: URL(
-                            string: entry.imageLink!
+                            string: entry.imageLink ?? ""
                         )
                     ) { image in
                         image
@@ -63,18 +65,6 @@ struct RecipeView: View {
             .safeAreaPadding(10)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(action: {
-                        dismiss()
-                    }) {
-                        Image(systemName: "chevron.left")
-                            .font(.system(size: 18, weight: .semibold))
-                            .foregroundColor(.black)
-                            .frame(width: 40, height: 40)
-                            .clipShape(Circle())
-                    }
-                }
-
                 ToolbarItem(placement: .principal) {
                     Text(
                         String(
