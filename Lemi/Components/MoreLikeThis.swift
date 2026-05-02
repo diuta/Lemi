@@ -10,13 +10,12 @@ import SwiftUI
 
 struct MoreLikeThis: View {
     let otherRecipes: [RecipeModel]
-    
+
     var body: some View {
         ZStack {
             Rectangle()
                 .fill(Color.green)
-            ScrollView(.horizontal, showsIndicators: false)
-            {
+            ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(otherRecipes) { recipe in
                         CustomCard(entry: recipe)

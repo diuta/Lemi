@@ -14,8 +14,7 @@ struct CustomCard: View {
         VStack(spacing: 11) {
             AsyncImage(
                 url: URL(
-                    string: entry.imageLink
-                        ?? ""
+                    string: entry.imageLink ?? ""
                 )
             ) { image in
                 image
