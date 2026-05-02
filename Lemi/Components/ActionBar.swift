@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BottomActionBarView: View {
+struct ActionBar: View {
     var body: some View {
         HStack(spacing: 16) {
             Button(action: {
@@ -24,7 +24,6 @@ struct BottomActionBarView: View {
             }
             
             Button(action: {
-                //print("Shuffle diklik!")
             }) {
                 Image(systemName: "shuffle")
                     .font(.system(size: 18, weight: .semibold))
@@ -36,15 +35,11 @@ struct BottomActionBarView: View {
             }
         }
         .padding(.horizontal, 20)
-        .padding(.bottom, 5)
-//        .background(
-//            Color.white.opacity(0.8)
-//                .background(Material.ultraThin)
-//                .mask(Rectangle().padding(.top, -20)) // Biar blurnya gradasi rapi
-//         )
+        .padding(.top, 20)
+//        .background(.red)
     }
 }
 
 #Preview {
-    BottomActionBarView()
+    ActionBar()
 }

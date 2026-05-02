@@ -40,17 +40,20 @@ struct RecipeModel: Identifiable {
     let imageLink: String?
 }
 
-// MARK: - 3. Sample Data
+// MARK: - 3. Dummy Data
 enum SampleData {
     static let recipes: [RecipeModel] = [
         RecipeModel(
             title: "Braised chicken",
             ingredients: [
-                "1 1/2 kg chicken", "1 tbsp each salt and pepper", "5 tbsp olive oil",
-                "1 tbsp dried Rosemary", "1 tbsp dried thyme", "1 chopped parsley",
-                "1 onion, chopped", "1 red bell pepper chopped", "1 celery chopped",
+                "1 1/2 kg chicken", "1 tbsp each salt and pepper",
+                "5 tbsp olive oil",
+                "1 tbsp dried Rosemary", "1 tbsp dried thyme",
+                "1 chopped parsley",
+                "1 onion, chopped", "1 red bell pepper chopped",
+                "1 celery chopped",
                 "6 garlic cloves", "1 chicken stock", "1 chopped tomatoes",
-                "1 tomato paste", "1/2 potatoes chopped", "1 peas"
+                "1 tomato paste", "1/2 potatoes chopped", "1 peas",
             ],
             directions: [
                 "Take a large pan.",
@@ -59,26 +62,31 @@ enum SampleData {
                 "Add the rest of the vegetables and mix well",
                 "Mix tomato paste with some chicken broth and put it in the pan",
                 "Put the lid on the pan and let it cook for 35 minutes.... Keep adding broth so that it doesnt dry up",
-                "Serve with beard and enjoy :)"
+                "Serve with beard and enjoy :)",
             ],
             ner: [
                 "chicken", "salt", "olive oil", "Rosemary", "thyme", "parsley",
                 "onion", "red bell pepper", "celery", "garlic", "chicken",
-                "tomatoes", "tomato", "potatoes", "peas"
+                "tomatoes", "tomato", "potatoes", "peas",
             ],
             tasteProfile: .savory,
             difficulty: .hard,
             mainIngredient: .chicken,
-            imageLink: nil
+            imageLink:
+                "https://cdn.britannica.com/98/235798-050-3C3BA15D/Hamburger-and-french-fries-paper-box.jpg"
         ),
-        
+
         RecipeModel(
             title: "Guppy's Chicken Noodle Soup",
             ingredients: [
-                "1 whole chicken", "1 large yellow onion, chopped", "1 bunch celery, chopped",
-                "3 (15 ounce) cans chicken broth", "12 cup parsley flakes", "4 garlic cloves, minced",
-                "1 tablespoon black pepper", "14 cup chicken bouillon granule", "1 tablespoon sea salt",
-                "1.5 (32 ounce) packages yolk-free wide egg noodles", "12 cup butter"
+                "1 whole chicken", "1 large yellow onion, chopped",
+                "1 bunch celery, chopped",
+                "3 (15 ounce) cans chicken broth", "12 cup parsley flakes",
+                "4 garlic cloves, minced",
+                "1 tablespoon black pepper", "14 cup chicken bouillon granule",
+                "1 tablespoon sea salt",
+                "1.5 (32 ounce) packages yolk-free wide egg noodles",
+                "12 cup butter",
             ],
             directions: [
                 "Place chicken in stock pot, fill with water until chicken is covered; On high heat, boil chicken until cooked completely.",
@@ -90,17 +98,18 @@ enum SampleData {
                 "Let simmer for 30 minutes.",
                 "Add noodles and butter, cook until noodles are soft.",
                 "About 15 minutes.",
-                "Serve."
+                "Serve.",
             ],
             ner: [
-                "chicken", "yellow onion", "celery", "chicken broth", "parsley flakes",
+                "chicken", "yellow onion", "celery", "chicken broth",
+                "parsley flakes",
                 "garlic", "black pepper", "chicken bouillon granule", "salt",
-                "egg noodles", "butter"
+                "egg noodles", "butter",
             ],
             tasteProfile: .savory,
             difficulty: .hard,
             mainIngredient: .chicken,
             imageLink: nil
-        )
+        ),
     ]
 }
