@@ -7,26 +7,6 @@
 
 import SwiftUI
 
-// MARK: - 1. Enum Kategori (Preference)
-enum TasteProfile: String, CaseIterable {
-    case savory = "Savory"
-    case sweet = "Sweet"
-    case spicy = "Spicy"
-}
-
-enum Difficulty: String, CaseIterable {
-    case easy = "Easy"
-    case medium = "Medium"
-    case hard = "Hard"
-}
-
-enum MainIngredient: String, CaseIterable {
-    case chicken = "Chicken"
-    case beef = "Beef"
-    case egg = "Egg"
-}
-
-// MARK: - 2. Model Utama Resep
 struct RecipeModel: Identifiable, Hashable {
     let id = UUID()
     let title: String
@@ -39,7 +19,7 @@ struct RecipeModel: Identifiable, Hashable {
     let imageLink: String?
 }
 
-// MARK: - 3. Dummy Data
+// MARK: Dummy Data
 enum SampleData {
     static let recipes: [RecipeModel] = [
         RecipeModel(

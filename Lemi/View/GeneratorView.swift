@@ -30,13 +30,13 @@ struct GeneratorView: View {
                 VStack(spacing: 15) {
                     SectionCard(
                         title: "Difficulty",
-                        bgColor: Color.AppTheme.pinkCard
+                        bgColor: Color.AppTheme.lightPink
                     ) {
                         HStack(spacing: 5) {
                             ForEach(difficulties, id: \.self) { difficulty in
                                 SelectionPill(
                                     text: difficulty.rawValue,
-                                    bgColor: Color.AppTheme.pinkPill,
+                                    bgColor: Color.AppTheme.darkPink,
                                     isSelected: selectedDifficulty == difficulty
                                 ) {
                                     selectedDifficulty =
@@ -49,13 +49,13 @@ struct GeneratorView: View {
                     }
                     SectionCard(
                         title: "Main Ingredient",
-                        bgColor: Color.AppTheme.blueCard
+                        bgColor: Color.AppTheme.lightBlue
                     ) {
                         HStack(spacing: 5) {
                             ForEach(ingredients, id: \.self) { ingredient in
                                 SelectionPill(
                                     text: ingredient.rawValue,
-                                    bgColor: Color.AppTheme.bluePill,
+                                    bgColor: Color.AppTheme.darkBlue,
                                     isSelected: selectedIngredient == ingredient
                                 ) {
                                     selectedIngredient =
@@ -68,13 +68,13 @@ struct GeneratorView: View {
                     }
                     SectionCard(
                         title: "Taste Profile",
-                        bgColor: Color.AppTheme.greenCard
+                        bgColor: Color.AppTheme.lightGreen
                     ) {
                         HStack(spacing: 5) {
                             ForEach(tastes, id: \.self) { taste in
                                 SelectionPill(
                                     text: taste.rawValue,
-                                    bgColor: Color.AppTheme.greenPill,
+                                    bgColor: Color.AppTheme.darkGreen,
                                     isSelected: selectedTaste == taste
                                 ) {
                                     selectedTaste =
@@ -103,7 +103,7 @@ struct GeneratorView: View {
                             .foregroundColor(.AppTheme.textPrimary)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 16)
-                            .background(Color.AppTheme.actionButton)
+                            .background(Color.AppTheme.yellow)
                             .clipShape(Capsule())
                     }
                     .padding(.bottom, 10)

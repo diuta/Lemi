@@ -15,7 +15,7 @@ struct ActionBar: View {
             }) {
                 Text("Start Cooking")
                     .font(.system(size: 16, weight: .bold))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.AppTheme.textPrimary)
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
                     .background(Color.yellow)
@@ -32,7 +32,7 @@ struct ActionBar: View {
             }) {
                 Image(systemName: "shuffle")
                     .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.AppTheme.textPrimary)
                     .frame(width: 50, height: 50)
                     .background(Color.white)
                     .clipShape(Circle())

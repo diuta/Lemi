@@ -1,31 +1,26 @@
 //
-//  StepView.swift
+//  IngredientList.swift
 //  Lemi
 //
-//  Created by Ananda Rachmawati Purwanto on 01/05/26.
+//  Created by Dimas Putra Aryawan on 02/05/26.
 //
 
 import SwiftUI
 
-struct RecipeSteps: View {
-    let entry: RecipeModel
+struct IngredientList: View {
+    let entry : RecipeModel
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 5) {
-                ForEach(Array(entry.directions.enumerated()), id: \.element) {
-                    index,
-                    d in
+            VStack(alignment: .leading) {
+                ForEach(entry.ingredients, id: \.self) { ingredient in
                     HStack(spacing: 16) {
                         ZStack {
-                            Circle()
-                                .fill(Color.AppTheme.lightGreen)
+                            RoundedRectangle(cornerRadius: 5)
+                                .strokeBorder(Color.AppTheme.darkBlue.opacity(0.2), lineWidth: 1)
                                 .frame(width: 50, height: 50)
-                            Text("\(index+1)")
-                                .font(Font.AppTheme.sectionHeader)
-                                .foregroundColor(Color.AppTheme.textSecondary)
                         }
-
-                        Text(d)
+                        Text(ingredient)
                             .font(Font.AppTheme.pillText)
                             .padding(.bottom, 5)
                             .frame(
@@ -40,17 +35,15 @@ struct RecipeSteps: View {
                                     )
                                     .frame(height: 1.5)
                             }
-
                     }
                     .padding(.vertical, 10)
-
                 }
             }
-            .padding(.horizontal, 20)
         }
+        .padding(.horizontal, 20)
     }
 }
 
 #Preview {
-    RecipeSteps(entry: SampleData.recipes.first!)
+    IngredientList(entry: SampleData.recipes.first!)
 }

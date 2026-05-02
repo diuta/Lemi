@@ -39,7 +39,7 @@ struct CustomCard: View {
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .overlay(
             RoundedRectangle(cornerRadius: 8)
-                .stroke(Color.green, lineWidth: 1)
+                .stroke(Color.AppTheme.lightGreen, lineWidth: 1)
         )
         .padding(5)
 

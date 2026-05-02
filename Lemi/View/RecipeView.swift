@@ -10,9 +10,9 @@ import SwiftUI
 struct RecipeView: View {
     let entry: RecipeModel
     let otherRecipes: [RecipeModel]
-    
+
     @State private var selectedTab = "Steps"
-    
+
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -52,6 +52,7 @@ struct RecipeView: View {
 
                     ScrollView(.vertical) {
                         if selectedTab == "Ingredients" {
+                            IngredientList(entry: entry)
                         } else if selectedTab == "Steps" {
                             RecipeSteps(entry: entry)
                         } else {
@@ -73,7 +74,7 @@ struct RecipeView: View {
                         )
                     )
                     .font(.system(size: 17, weight: .semibold))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.AppTheme.textPrimary)
                 }
             }
         }
