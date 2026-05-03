@@ -9,9 +9,11 @@ import Foundation
 import SwiftUI
 
 struct MoreLikeThis: View {
-    
-    let current: RecipeModel
-    var otherRecipes: [RecipeModel] { MoreLikeThisGenerator.generate(currRecipe: current) }
+
+    let entry: RecipeModel
+    var otherRecipes: [RecipeModel] {
+        MoreLikeThisGenerator.generate(currRecipe: entry)
+    }
 
     var body: some View {
         ZStack {
@@ -50,5 +52,7 @@ struct MoreLikeThis: View {
 }
 
 #Preview {
-    MoreLikeThis(current: RecipeStore.shared.recipes.first!)
+    MoreLikeThis(
+        entry: RecipeDataLoader.decodeRecipes().first!
+    )
 }

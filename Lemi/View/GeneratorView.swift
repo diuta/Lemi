@@ -8,14 +8,11 @@
 import SwiftUI
 
 struct GeneratorView: View {
-    @Environment(RecipeStore.self) private var store
 
     @State private var selectedDifficulty: Difficulty? = nil
     @State private var selectedIngredient: MainIngredient? = nil
     @State private var selectedTaste: TasteProfile? = nil
-
     @State private var generatedRecipe: RecipeModel? = nil
-
     @State private var showErrorAlert: Bool = false
 
     let difficulties = Difficulty.allCases
@@ -91,7 +88,6 @@ struct GeneratorView: View {
 
                     Button(action: {
                         if let result = RecipeGenerator.generate(
-                            from: store.recipes,
                             taste: selectedTaste,
                             difficulty: selectedDifficulty,
                             ingredient: selectedIngredient
@@ -125,7 +121,6 @@ struct GeneratorView: View {
                     "There are no combinations available yet. Please select another set of preferences."
                 )
             }
-
         }
     }
 }

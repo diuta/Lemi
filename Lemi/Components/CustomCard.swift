@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CustomCard: View {
+    
     let entry: RecipeModel
 
     var body: some View {
@@ -48,6 +49,6 @@ struct CustomCard: View {
 
 #Preview {
     CustomCard(
-        entry: RecipeStore.shared.recipes.first!
+        entry: RecipeDataLoader.decodeRecipes().first!
     )
 }

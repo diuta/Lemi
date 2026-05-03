@@ -9,11 +9,13 @@ import Foundation
 
 struct RecipeGenerator {
     static func generate(
-        from recipes: [RecipeModel],
         taste: TasteProfile?,
         difficulty: Difficulty?,
         ingredient: MainIngredient?
     ) -> RecipeModel? {
+        
+        let recipes: [RecipeModel] = RecipeDataLoader.decodeRecipes()
+        
         return recipes.filter { recipe in
             (taste == nil || recipe.tasteProfile == taste)
                 && (difficulty == nil || recipe.difficulty == difficulty)
@@ -25,18 +27,16 @@ struct RecipeGenerator {
 struct MoreLikeThisGenerator {
     static func generate(
         currRecipe : RecipeModel,
-        limit: Int = 5
     ) -> [RecipeModel] {
         
-        let recipes: [RecipeModel] = RecipeStore.shared.recipes
+        let recipes: [RecipeModel] = RecipeDataLoader.decodeRecipes()
         let filtered = recipes.filter { $0.id != currRecipe.id }
-        
         let exactMatch = filtered.filter {
             $0.tasteProfile == currRecipe.tasteProfile &&
             $0.difficulty == currRecipe.difficulty &&
             $0.mainIngredient == currRecipe.mainIngredient
         }
 
-        return Array(exactMatch.shuffled().prefix(limit))
+        return Array(exactMatch.shuffled().prefix(5))
     }
 }

@@ -26,7 +26,6 @@ struct Ingredient: Hashable, Codable {
     let alternativeMeasurement: String?
 }
 
-//
 //struct SampleData {
 //    static let recipes: [RecipeModel] = [
 //        RecipeModel(

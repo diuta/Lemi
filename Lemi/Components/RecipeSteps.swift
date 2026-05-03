@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct RecipeSteps: View {
+    
     let entry: RecipeModel
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 5) {
@@ -52,5 +54,7 @@ struct RecipeSteps: View {
 }
 
 #Preview {
-    RecipeSteps(entry: RecipeStore.shared.recipes.first!)
+    RecipeSteps(
+        entry: RecipeDataLoader.decodeRecipes().first!
+    )
 }

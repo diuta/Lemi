@@ -55,6 +55,18 @@ extension Font {
             weight: .medium,
             design: .default
         )
+        
+        static let ingredientName = Font.system(
+            size: 16,
+            weight: .medium,
+            design: .default
+        )
+        
+        static let ingredientMeasurement = Font.system(
+            size: 16,
+            weight: .semibold,
+            design: .default
+        )
 
         /// Used for the main action button ("Generate")
         static let buttonText = Font.system(

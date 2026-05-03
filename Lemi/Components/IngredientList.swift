@@ -8,35 +8,17 @@
 import SwiftUI
 
 struct IngredientList: View {
-    let entry : RecipeModel
-    
+    let entry: RecipeModel
+
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 0) {
                 ForEach(entry.ingredients, id: \.self) { ingredient in
-                    HStack(spacing: 16) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 5)
-                                .strokeBorder(Color.AppTheme.darkBlue.opacity(0.2), lineWidth: 1)
-                                .frame(width: 50, height: 50)
-                        }
-                        Text(ingredient.name)
-                            .font(Font.AppTheme.pillText)
-                            .padding(.bottom, 5)
-                            .frame(
-                                maxWidth: .infinity,
-                                maxHeight: .infinity,
-                                alignment: .leading
-                            )
-                            .overlay(alignment: .bottom) {
-                                Rectangle()
-                                    .fill(
-                                        Color.AppTheme.darkBlue.opacity(0.2)
-                                    )
-                                    .frame(height: 1.5)
-                            }
+                    if ingredient.alternative != nil {
+                        AlternativeIngredientRow(ingredient: ingredient)
+                    } else {
+                        DefaultIngredientRow(ingredient: ingredient)
                     }
-                    .padding(.vertical, 10)
                 }
             }
         }
@@ -44,6 +26,100 @@ struct IngredientList: View {
     }
 }
 
+struct DefaultIngredientRow: View {
+    let ingredient: Ingredient
+
+    var body: some View {
+        HStack {
+            Text(
+                ingredient.name
+            )
+            .font(Font.AppTheme.ingredientName)
+            .foregroundColor(.black)
+            .padding(.leading, 10)
+
+            Spacer()
+
+            Text(
+                ingredient.measurement
+            )
+            .font(Font.AppTheme.ingredientMeasurement)
+            .foregroundColor(.black)
+            .padding(.trailing, 10)
+        }
+        .padding(.vertical, 20)
+        .overlay(alignment: .bottom) {
+            Rectangle()
+                .fill(Color.AppTheme.darkBlue.opacity(0.2))
+                .frame(height: 1)
+        }
+    }
+}
+
+struct AlternativeIngredientRow: View {
+    let ingredient: Ingredient
+    @State private var dragOffset: CGFloat = 0
+    @State private var showingAlternative = false
+
+    var body: some View {
+        HStack {
+            Text("«")
+                .foregroundColor(.white)
+
+            Text(
+                showingAlternative
+                    ? (ingredient.alternative ?? "") : ingredient.name
+            )
+            .font(Font.AppTheme.ingredientName)
+            .foregroundColor(.white)
+            .padding(.leading, 10)
+
+            Spacer()
+
+            Text(
+                showingAlternative
+                    ? (ingredient.alternativeMeasurement ?? "")
+                    : ingredient.measurement
+            )
+            .font(Font.AppTheme.ingredientMeasurement)
+            .foregroundColor(.white)
+            .padding(.trailing, 10)
+
+            Text("»")
+                .foregroundColor(.white)
+
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 20)
+        .background(
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                .fill(
+                    Color.AppTheme.darkPink.opacity(0.7)
+                )
+        )
+        .padding(.top, 15)
+        .offset(x: dragOffset)
+        .gesture(
+            DragGesture()
+                .onChanged { gesture in
+                    dragOffset = gesture.translation.width
+                }
+                .onEnded { gesture in
+                    if abs(gesture.translation.width) > 80 {
+                        showingAlternative.toggle()
+                    }
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.6))
+                    {
+                        dragOffset = 0
+                    }
+                }
+        )
+        .animation(.easeInOut, value: showingAlternative)
+    }
+}
+
 #Preview {
-    IngredientList(entry: RecipeStore.shared.recipes.first!)
+    IngredientList(
+        entry: RecipeDataLoader.decodeRecipes()[1]
+    )
 }

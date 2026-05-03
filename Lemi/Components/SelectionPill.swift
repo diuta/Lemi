@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SelectionPill: View {
+    
     var text: String
     var bgColor: Color
     var isSelected: Bool = false

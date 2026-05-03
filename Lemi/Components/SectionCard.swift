@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SectionCard<Content: View>: View {
+    
     var title: String
     var bgColor: Color
 
@@ -20,7 +21,6 @@ struct SectionCard<Content: View>: View {
                 .foregroundColor(Color.AppTheme.textSecondary)
 
             content
-
         }
         .padding(20)
         .frame(maxWidth: .infinity, alignment: .leading)
