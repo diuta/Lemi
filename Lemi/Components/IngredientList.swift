@@ -114,7 +114,6 @@ struct AlternativeIngredientRow: View {
                     }
                 }
         )
-        .animation(.easeInOut, value: showingAlternative)
     }
 }
 

@@ -14,6 +14,8 @@ struct MoreLikeThis: View {
     var otherRecipes: [RecipeModel] {
         MoreLikeThisGenerator.generate(currRecipe: entry)
     }
+    
+    @State private var selectedRecipe: RecipeModel? = nil
 
     var body: some View {
         ZStack {
@@ -23,6 +25,9 @@ struct MoreLikeThis: View {
                 HStack {
                     ForEach(otherRecipes) { recipe in
                         CustomCard(entry: recipe)
+                            .onTapGesture {
+                                selectedRecipe = recipe
+                            }
                     }
                 }
                 .padding(.horizontal, 16)
@@ -48,6 +53,10 @@ struct MoreLikeThis: View {
             )
         )
         .padding(.horizontal, 20)
+        .navigationDestination(item: $selectedRecipe) {
+            recipe in
+            RecipeView(entry: recipe)
+        }
     }
 }
 
