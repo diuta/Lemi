@@ -35,7 +35,7 @@ struct DefaultIngredientRow: View {
                 ingredient.name
             )
             .font(Font.AppTheme.ingredientName)
-            .foregroundColor(.black)
+            .foregroundColor(Color.AppTheme.textPrimary)
             .padding(.leading, 10)
 
             Spacer()
@@ -44,7 +44,7 @@ struct DefaultIngredientRow: View {
                 ingredient.measurement
             )
             .font(Font.AppTheme.ingredientMeasurement)
-            .foregroundColor(.black)
+            .foregroundColor(Color.AppTheme.textPrimary)
             .padding(.trailing, 10)
         }
         .padding(.vertical, 20)
@@ -64,14 +64,14 @@ struct AlternativeIngredientRow: View {
     var body: some View {
         HStack {
             Text("«")
-                .foregroundColor(.white)
+                .foregroundColor(Color.AppTheme.textSecondary)
 
             Text(
                 showingAlternative
                     ? (ingredient.alternative ?? "") : ingredient.name
             )
             .font(Font.AppTheme.ingredientName)
-            .foregroundColor(.white)
+            .foregroundColor(Color.AppTheme.textSecondary)
             .padding(.leading, 10)
 
             Spacer()
@@ -82,11 +82,11 @@ struct AlternativeIngredientRow: View {
                     : ingredient.measurement
             )
             .font(Font.AppTheme.ingredientMeasurement)
-            .foregroundColor(.white)
+            .foregroundColor(Color.AppTheme.textSecondary)
             .padding(.trailing, 10)
 
             Text("»")
-                .foregroundColor(.white)
+                .foregroundColor(Color.AppTheme.textSecondary)
 
         }
         .padding(.horizontal, 12)
