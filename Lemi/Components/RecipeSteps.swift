@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct RecipeSteps: View {
+    
     let entry: RecipeModel
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 5) {
@@ -18,20 +20,16 @@ struct RecipeSteps: View {
                     HStack(spacing: 16) {
                         ZStack {
                             Circle()
-                                .fill(Color(.systemGreen))
-                                .frame(width: 48, height: 48)
+                                .fill(Color.AppTheme.lightGreen)
+                                .frame(width: 50, height: 50)
                             Text("\(index+1)")
-                                .font(.system(size: 19, weight: .bold))
-                                .foregroundColor(.white)
+                                .font(Font.AppTheme.sectionHeader)
+                                .foregroundColor(Color.AppTheme.textSecondary)
                         }
-                        .padding(.top, 4)
-                        .padding(.bottom, 4)
 
                         Text(d)
-                            .font(Font.system(size: 16))
-                            .multilineTextAlignment(.leading)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 10)
+                            .font(Font.AppTheme.pillText)
+                            .padding(.bottom, 5)
                             .frame(
                                 maxWidth: .infinity,
                                 maxHeight: .infinity,
@@ -40,25 +38,23 @@ struct RecipeSteps: View {
                             .overlay(alignment: .bottom) {
                                 Rectangle()
                                     .fill(
-                                        Color(
-                                            red: 217 / 255,
-                                            green: 236 / 255,
-                                            blue: 250 / 255
-                                        )
+                                        Color.AppTheme.darkBlue.opacity(0.2)
                                     )
                                     .frame(height: 1.5)
                             }
 
                     }
-                    .padding(.horizontal, 20)
+                    .padding(.vertical, 10)
 
                 }
             }
-            .padding(.vertical, 10)
+            .padding(.horizontal, 20)
         }
     }
 }
 
 #Preview {
-    RecipeSteps(entry: SampleData.recipes.first!)
+    RecipeSteps(
+        entry: RecipeDataLoader.decodeRecipes().first!
+    )
 }

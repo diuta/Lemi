@@ -8,34 +8,35 @@
 import SwiftUI
 
 struct RecipeView: View {
+
     let entry: RecipeModel
-    let otherRecipes: [RecipeModel]
-    
+
     @State private var selectedTab = "Steps"
-    
-    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         NavigationStack {
             VStack {
                 VStack(spacing: 20) {
-                    AsyncImage(
-                        url: URL(
-                            string: entry.imageLink ?? ""
-                        )
-                    ) { image in
+                    AsyncImage(url: URL(string: entry.imageLink ?? "")) {
+                        image in
                         image
                             .resizable()
                             .scaledToFill()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 250)
+                            .clipped()
                     } placeholder: {
-                        ProgressView()
+                        Rectangle()
+                            .fill(Color.gray.opacity(0.15))
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 250)
+                            .overlay { ProgressView() }
                     }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 250)
                     .clipShape(
                         RoundedRectangle(cornerRadius: 30, style: .continuous)
                     )
                     .padding(.horizontal, 20)
+
                     Text(entry.title)
                         .font(.system(size: 24, weight: .bold))
                         .multilineTextAlignment(.center)
@@ -52,10 +53,11 @@ struct RecipeView: View {
 
                     ScrollView(.vertical) {
                         if selectedTab == "Ingredients" {
+                            IngredientList(entry: entry)
                         } else if selectedTab == "Steps" {
                             RecipeSteps(entry: entry)
                         } else {
-                            MoreLikeThis(otherRecipes: otherRecipes)
+                            MoreLikeThis(entry: entry)
                         }
                     }
 
@@ -73,7 +75,7 @@ struct RecipeView: View {
                         )
                     )
                     .font(.system(size: 17, weight: .semibold))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.AppTheme.textPrimary)
                 }
             }
         }
@@ -82,7 +84,6 @@ struct RecipeView: View {
 
 #Preview {
     RecipeView(
-        entry: SampleData.recipes.first!,
-        otherRecipes: SampleData.recipes
+        entry: RecipeDataLoader.decodeRecipes()[3]
     )
 }

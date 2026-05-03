@@ -14,19 +14,18 @@ extension Color {
         static let mainBackground = Color(red: 0.96, green: 0.96, blue: 0.94)  // Soft off-white
 
         // Difficulty (Pink)
-        static let pinkCard = Color(red: 1.0, green: 0.53, blue: 0.76)
-        static let pinkPill = Color(red: 0.82, green: 0.42, blue: 0.62)  // Darker pink for pills
+        static let lightPink = Color(red: 1.0, green: 0.53, blue: 0.76)
+        static let darkPink = Color(red: 0.82, green: 0.42, blue: 0.62)  // Darker pink for pills
 
         // Main Ingredient (Blue)
-        static let blueCard = Color(red: 0.05, green: 0.53, blue: 0.92)
-        static let bluePill = Color(red: 0.03, green: 0.40, blue: 0.72)  // Darker blue for pills
+        static let lightBlue = Color(red: 0.05, green: 0.53, blue: 0.92)
+        static let darkBlue = Color(red: 0.03, green: 0.40, blue: 0.72)  // Darker blue for pills
 
         // Taste Profile (Green)
-        static let greenCard = Color(red: 0.07, green: 0.68, blue: 0.26)
-        static let greenPill = Color(red: 0.05, green: 0.48, blue: 0.18)  // Darker green for pills
+        static let lightGreen = Color(red: 0.07, green: 0.68, blue: 0.26)
+        static let darkGreen = Color(red: 0.05, green: 0.48, blue: 0.18)  // Darker green for pills
 
-        // Action Button
-        static let actionButton = Color(red: 1.0, green: 0.80, blue: 0.16)  // Bright yellow
+        static let yellow = Color(red: 1.0, green: 0.80, blue: 0.16)  // Bright yellow
 
         // Text Colors
         static let textPrimary = Color.black
@@ -54,6 +53,18 @@ extension Font {
         static let pillText = Font.system(
             size: 14,
             weight: .medium,
+            design: .default
+        )
+        
+        static let ingredientName = Font.system(
+            size: 16,
+            weight: .medium,
+            design: .default
+        )
+        
+        static let ingredientMeasurement = Font.system(
+            size: 16,
+            weight: .semibold,
             design: .default
         )
 

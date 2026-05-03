@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CustomCard: View {
+    
     let entry: RecipeModel
 
     var body: some View {
@@ -39,7 +40,7 @@ struct CustomCard: View {
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .overlay(
             RoundedRectangle(cornerRadius: 8)
-                .stroke(Color.green, lineWidth: 1)
+                .stroke(Color.AppTheme.lightGreen, lineWidth: 1)
         )
         .padding(5)
 
@@ -48,6 +49,6 @@ struct CustomCard: View {
 
 #Preview {
     CustomCard(
-        entry: SampleData.recipes.first!
+        entry: RecipeDataLoader.decodeRecipes().first!
     )
 }
