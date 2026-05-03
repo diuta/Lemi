@@ -9,8 +9,7 @@ import SwiftUI
 
 struct RecipeView: View {
     let entry: RecipeModel
-    let otherRecipes: [RecipeModel]
-
+    
     @State private var selectedTab = "Steps"
 
     @Environment(\.dismiss) private var dismiss
@@ -56,7 +55,7 @@ struct RecipeView: View {
                         } else if selectedTab == "Steps" {
                             RecipeSteps(entry: entry)
                         } else {
-                            MoreLikeThis(otherRecipes: otherRecipes)
+                            MoreLikeThis(current: entry)
                         }
                     }
 
@@ -83,7 +82,6 @@ struct RecipeView: View {
 
 #Preview {
     RecipeView(
-        entry: SampleData.recipes.first!,
-        otherRecipes: SampleData.recipes
+        entry: RecipeStore.shared.recipes.first!
     )
 }

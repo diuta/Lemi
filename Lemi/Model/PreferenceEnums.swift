@@ -5,20 +5,34 @@
 //  Created by Dimas Putra Aryawan on 02/05/26.
 //
 
-enum TasteProfile: String, CaseIterable {
-    case savory = "Savory"
-    case sweet = "Sweet"
-    case spicy = "Spicy"
+import Foundation
+
+enum TasteProfile: String, CaseIterable, Codable {
+    case savory = "savory"
+    case sweet = "sweet"
+    case spicy = "spicy"
+    
+    var displayName: String {
+        return self.rawValue.capitalized
+    }
 }
 
-enum Difficulty: String, CaseIterable {
-    case easy = "Easy"
-    case medium = "Medium"
-    case hard = "Hard"
+enum Difficulty: String, CaseIterable, Codable {
+    case easy = "easy"
+    case medium = "medium"
+    case hard = "hard"
+    
+    var displayName: String {
+        return self.rawValue.capitalized
+    }
 }
 
-enum MainIngredient: String, CaseIterable {
-    case chicken = "Chicken"
-    case beef = "Beef"
-    case egg = "Egg"
+enum MainIngredient: String, CaseIterable, Codable {
+    case chicken = "chicken"
+    case beef = "beef"
+    case egg = "egg"
+    
+    var displayName: String {
+        return self.rawValue.capitalized
+    }
 }

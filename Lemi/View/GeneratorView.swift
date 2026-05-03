@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct GeneratorView: View {
+    @Environment(RecipeStore.self) private var store
+
     @State private var selectedDifficulty: Difficulty? = nil
     @State private var selectedIngredient: MainIngredient? = nil
     @State private var selectedTaste: TasteProfile? = nil
@@ -89,6 +91,7 @@ struct GeneratorView: View {
 
                     Button(action: {
                         if let result = RecipeGenerator.generate(
+                            from: store.recipes,
                             taste: selectedTaste,
                             difficulty: selectedDifficulty,
                             ingredient: selectedIngredient
@@ -113,7 +116,7 @@ struct GeneratorView: View {
             .background(Color.AppTheme.mainBackground.ignoresSafeArea())
             .navigationDestination(item: $generatedRecipe) {
                 recipe in
-                RecipeView(entry: recipe, otherRecipes: SampleData.recipes)
+                RecipeView(entry: recipe)
             }
             .alert("No Recipe Found", isPresented: $showErrorAlert) {
                 Button("Got it", role: .cancel) {}

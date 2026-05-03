@@ -20,7 +20,7 @@ struct IngredientList: View {
                                 .strokeBorder(Color.AppTheme.darkBlue.opacity(0.2), lineWidth: 1)
                                 .frame(width: 50, height: 50)
                         }
-                        Text(ingredient)
+                        Text(ingredient.name)
                             .font(Font.AppTheme.pillText)
                             .padding(.bottom, 5)
                             .frame(
@@ -45,5 +45,5 @@ struct IngredientList: View {
 }
 
 #Preview {
-    IngredientList(entry: SampleData.recipes.first!)
+    IngredientList(entry: RecipeStore.shared.recipes.first!)
 }

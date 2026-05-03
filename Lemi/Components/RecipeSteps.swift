@@ -52,5 +52,5 @@ struct RecipeSteps: View {
 }
 
 #Preview {
-    RecipeSteps(entry: SampleData.recipes.first!)
+    RecipeSteps(entry: RecipeStore.shared.recipes.first!)
 }

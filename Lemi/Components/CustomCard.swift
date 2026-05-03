@@ -48,6 +48,6 @@ struct CustomCard: View {
 
 #Preview {
     CustomCard(
-        entry: SampleData.recipes.first!
+        entry: RecipeStore.shared.recipes.first!
     )
 }
