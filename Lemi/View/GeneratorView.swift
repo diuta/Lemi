@@ -34,7 +34,7 @@ struct GeneratorView: View {
                         HStack(spacing: 5) {
                             ForEach(difficulties, id: \.self) { difficulty in
                                 SelectionPill(
-                                    text: difficulty.rawValue,
+                                    text: difficulty.rawValue.capitalized,
                                     bgColor: Color.AppTheme.darkPink,
                                     isSelected: selectedDifficulty == difficulty
                                 ) {
@@ -53,7 +53,7 @@ struct GeneratorView: View {
                         HStack(spacing: 5) {
                             ForEach(ingredients, id: \.self) { ingredient in
                                 SelectionPill(
-                                    text: ingredient.rawValue,
+                                    text: ingredient.rawValue.capitalized,
                                     bgColor: Color.AppTheme.darkBlue,
                                     isSelected: selectedIngredient == ingredient
                                 ) {
@@ -72,7 +72,7 @@ struct GeneratorView: View {
                         HStack(spacing: 5) {
                             ForEach(tastes, id: \.self) { taste in
                                 SelectionPill(
-                                    text: taste.rawValue,
+                                    text: taste.rawValue.capitalized,
                                     bgColor: Color.AppTheme.darkGreen,
                                     isSelected: selectedTaste == taste
                                 ) {
