@@ -32,7 +32,7 @@ struct DefaultIngredientRow: View {
     var body: some View {
         HStack {
             Text(
-                ingredient.name
+                ingredient.name.capitalized
             )
             .font(Font.AppTheme.ingredientName)
             .foregroundColor(Color.AppTheme.textPrimary)
@@ -68,7 +68,7 @@ struct AlternativeIngredientRow: View {
 
             Text(
                 showingAlternative
-                    ? (ingredient.alternative ?? "") : ingredient.name
+                ? (ingredient.alternative ?? "") : ingredient.name.capitalized
             )
             .font(Font.AppTheme.ingredientName)
             .foregroundColor(Color.AppTheme.textSecondary)

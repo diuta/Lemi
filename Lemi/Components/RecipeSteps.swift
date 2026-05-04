@@ -27,7 +27,7 @@ struct RecipeSteps: View {
                                 .foregroundColor(Color.AppTheme.textSecondary)
                         }
 
-                        Text(d)
+                        Text(d.prefix(1).uppercased() + d.dropFirst())
                             .font(Font.AppTheme.pillText)
                             .padding(.bottom, 5)
                             .frame(
