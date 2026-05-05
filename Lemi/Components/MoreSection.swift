@@ -19,7 +19,7 @@ struct MoreSection: View {
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 20) {
+            HStack(spacing: 12) {
                 ForEach(otherRecipes) { recipe in
                     MoreCard(entry: recipe)
                         .onTapGesture {

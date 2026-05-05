@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct RecipeView: View {
-
+    
     let entry: RecipeModel
-
+    init(entry: RecipeModel) {
+        self.entry = entry
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor.systemYellow
+        UISegmentedControl.appearance().setTitleTextAttributes([
+            .foregroundColor: UIColor.black,
+            .font: UIFont.systemFont(ofSize: 14, weight: .bold)
+        ], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black], for: .normal)
+    }
+    
     @State private var selectedTab = "Steps"
-
+    
     var body: some View {
         VStack {
             VStack(spacing: 20) {
@@ -34,7 +43,7 @@ struct RecipeView: View {
                 .clipShape(
                     RoundedRectangle(cornerRadius: 30, style: .continuous)
                 )
-
+                
                 Text(entry.title)
                     .font(.system(size: 24, weight: .bold))
                     .multilineTextAlignment(.center)
@@ -46,7 +55,7 @@ struct RecipeView: View {
                     Text("More Like This").tag("More Like This")
                 }
                 .pickerStyle(.segmented)
-
+                
                 ScrollView(.vertical) {
                     if selectedTab == "Ingredients" {
                         IngredientList(entry: entry)
@@ -76,7 +85,7 @@ struct RecipeView: View {
                 .foregroundColor(Color.AppTheme.textPrimary)
             }
         }
-
+        
     }
 }
 

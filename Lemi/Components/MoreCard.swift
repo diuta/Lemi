@@ -24,8 +24,8 @@ struct MoreCard: View {
             } placeholder: {
                 ProgressView()
             }
-            .frame(width: 80, height: 80)
-            .clipShape(RoundedRectangle(cornerRadius: 3))
+            .frame(width: 89, height: 89)
+            .clipShape(RoundedRectangle(cornerRadius: 5))
             .clipped()
 
             VStack {
@@ -33,15 +33,16 @@ struct MoreCard: View {
                     .font(.system(size: 13, weight: .bold))
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.7)
+                    .foregroundColor(Color.AppTheme.darkerYellow)
             }
             .frame(height: 40)
 
         }
         .padding(10)
-        .frame(width: 100, height: 158, alignment: .top)
+        .frame(width: 114, height: 158, alignment: .top)
         .background(
-            RoundedRectangle(cornerRadius: 6)
-                .fill(Color(red: 0.87, green: 0.94, blue: 0.92))
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.AppTheme.normalYellow)
         )
 
     }

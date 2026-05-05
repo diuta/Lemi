@@ -31,6 +31,7 @@ struct GeneratorView: View {
                         title: "Difficulty",
                         bgColor: Color.AppTheme.lightPink,
                         bgImageName: "DifficultyAsset"
+                        
                     ) {
                         HStack(spacing: 10) {
                             ForEach(difficulties, id: \.self) { difficulty in
