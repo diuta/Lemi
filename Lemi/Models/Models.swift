@@ -26,6 +26,36 @@ struct Ingredient: Hashable, Codable {
     let alternativeMeasurement: String?
 }
 
+enum TasteProfile: String, CaseIterable, Codable {
+    case savory = "savory"
+    case sweet = "sweet"
+    case spicy = "spicy"
+    
+    var displayName: String {
+        return self.rawValue.capitalized
+    }
+}
+
+enum Difficulty: String, CaseIterable, Codable {
+    case easy = "easy"
+    case medium = "medium"
+    case hard = "hard"
+    
+    var displayName: String {
+        return self.rawValue.capitalized
+    }
+}
+
+enum MainIngredient: String, CaseIterable, Codable {
+    case chicken = "chicken"
+    case beef = "beef"
+    case egg = "egg"
+    
+    var displayName: String {
+        return self.rawValue.capitalized
+    }
+}
+
 //struct SampleData {
 //    static let recipes: [RecipeModel] = [
 //        RecipeModel(

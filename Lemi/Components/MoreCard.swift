@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CustomCard: View {
+struct MoreCard: View {
     
     let entry: RecipeModel
 
@@ -48,7 +48,7 @@ struct CustomCard: View {
 }
 
 #Preview {
-    CustomCard(
+    MoreCard(
         entry: RecipeDataLoader.decodeRecipes().first!
     )
 }

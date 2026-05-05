@@ -61,7 +61,7 @@ struct RecipeView: View {
                 }
 
             }
-            ActionBar()
+//            GenerateButton()
         }
         .safeAreaPadding(10)
         .navigationBarTitleDisplayMode(.inline)
