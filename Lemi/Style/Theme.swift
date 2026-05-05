@@ -28,7 +28,7 @@ extension Color {
         static let darkGreen = Color(hex: "#008335")
 
         static let activeYellow = Color(hex: "#FFEFBB")
-        static let lightYellow = Color(hex: "#FFFAE9")
+        static let lightYellow = Color(hex:"#FFFAE9")
         static let normalYellow = Color(hex: "#FFCC23")
         static let darkYellow = Color(hex: "#BF991A")
         static let darkerYellow = Color(hex: "#59470C")
