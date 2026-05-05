@@ -14,8 +14,8 @@ extension Color {
         static let mainBackground = Color(red: 0.96, green: 0.96, blue: 0.94)  // Soft off-white
 
         // Difficulty (Pink)
-        static let lightPink = Color(red: 1.0, green: 0.53, blue: 0.76)
-        static let darkPink = Color(red: 0.82, green: 0.42, blue: 0.62)  // Darker pink for pills
+        static let lightPink = Color(hex: "#FF88CF")
+        static let darkPink = Color(hex: "#CC6DA6")
 
         // Main Ingredient (Blue)
         static let lightBlue = Color(red: 0.05, green: 0.53, blue: 0.92)
@@ -46,7 +46,7 @@ extension Font {
 
         /// Used for card titles like "Difficulty", "Main Ingredient"
         static let sectionHeader = Font.system(
-            size: 18,
+            size: 24,
             weight: .bold,
             design: .default
         )
@@ -58,9 +58,9 @@ extension Font {
             design: .default
         )
         
-        static let ingredientName = Font.system(
+        static let listName = Font.system(
             size: 16,
-            weight: .medium,
+            weight: .regular,
             design: .default
         )
         

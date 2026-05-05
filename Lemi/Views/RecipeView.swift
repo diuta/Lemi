@@ -22,7 +22,7 @@ struct RecipeView: View {
                         .resizable()
                         .scaledToFill()
                         .frame(maxWidth: .infinity)
-                        .frame(height: 250)
+                        .frame(width: 370, height: 250)
                         .clipped()
                 } placeholder: {
                     Rectangle()
@@ -56,7 +56,7 @@ struct RecipeView: View {
                         MoreSection(entry: entry)
                     }
                 }
-                MainButton("Save") {
+                MainButton("Add to List", iconName: "plus.app.fill") {
                     print("damn")
                 }
             }

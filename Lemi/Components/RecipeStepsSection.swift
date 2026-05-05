@@ -21,16 +21,19 @@ struct RecipeStepsSection: View {
                     HStack(spacing: 20) {
                         Text("\(index+1)")
                             .font(Font.AppTheme.sectionHeader)
-                            .foregroundColor(Color.purple)
+                            .foregroundColor(Color.AppTheme.darkYellow)
 
-                        Text(d)
-                            .font(Font.AppTheme.pillText)
+                        VStack(alignment: .leading) {
+                            Text(d)
+                                .font(Font.AppTheme.listName)
+                                .padding(.vertical, 15)
+
+                            Divider()
+                                .overlay(Color.AppTheme.darkYellow.opacity(0.4))
+                        }
 
                     }
-                    .padding(.vertical, 15)
 
-                    Divider()
-                        .overlay(Color.purple.opacity(0.4))
                 }
             }
         }
