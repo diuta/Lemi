@@ -21,8 +21,7 @@ struct RecipeStepsSection: View {
                     HStack(spacing: 20) {
                         VStack{
                             Text("\(index+1)")
-                                .font(.system(size: 16, weight: .bold))
-                                .font(Font.AppTheme.sectionHeader)
+                                .font(Font.AppTheme.boldRegular)
                                 .foregroundColor(Color.AppTheme.darkYellow)
                                 .frame(maxHeight: .infinity)
                                 //.background(Color.AppTheme.darkYellow)
@@ -35,19 +34,14 @@ struct RecipeStepsSection: View {
 
                         VStack(alignment: .leading) {
                             Text(d)
-                                //.frame(maxHeight: .infinity)
-                                .font(.system(size: 16))
-
-                                .font(Font.AppTheme.listName)
+                                .font(Font.AppTheme.regular)
                                 .padding(.vertical, 15)
-                                //.background(Color.AppTheme.darkYellow)
 
                             Divider()
                                 .overlay(Color.AppTheme.darkYellow.opacity(0.4))
                                 
                         }
                         .frame(maxHeight: .infinity)
-                        //.background(Color.AppTheme.darkYellow)
 
 
 

@@ -30,7 +30,7 @@ struct MoreCard: View {
 
             VStack {
                 Text(entry.title)
-                    .font(.system(size: 13, weight: .bold))
+                    .font(Font.AppTheme.content)
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.7)
                     .foregroundColor(Color.AppTheme.darkerYellow)
@@ -42,7 +42,7 @@ struct MoreCard: View {
         .frame(width: 114, height: 158, alignment: .top)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color.AppTheme.normalYellow)
+                .fill(Color.AppTheme.activeYellow)
         )
 
     }

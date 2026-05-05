@@ -34,21 +34,21 @@ struct DefaultIngredientRow: View {
             Text(
                 ingredient.measurement
             )
-            .font(Font.AppTheme.ingredientMeasurement)
+            .font(Font.AppTheme.boldRegular)
             .foregroundColor(Color.AppTheme.textPrimary)
             .frame(width: 75, alignment: .leading)
             
             Text(
                 ingredient.name.capitalized
             )
-            .font(Font.AppTheme.listName)
+            .font(Font.AppTheme.regular)
             .foregroundColor(Color.AppTheme.textPrimary)
             .multilineTextAlignment(.leading)
             Spacer()
         }
         .padding(.vertical, 20)
         Divider()
-            .overlay(Color.AppTheme.darkBlue.opacity(0.5))
+            .overlay(Color.AppTheme.darkYellow.opacity(0.5))
         
     }
 }
@@ -65,14 +65,14 @@ struct AlternativeIngredientRow: View {
                 ? (ingredient.alternativeMeasurement ?? "")
                 : ingredient.measurement
             )
-            .font(Font.AppTheme.ingredientMeasurement)
+            .font(Font.AppTheme.boldRegular)
             .frame(width: 75, alignment: .leading)
             
             Text(
                 showingAlternative
                 ? (ingredient.alternative ?? "") : ingredient.name.capitalized
             )
-            .font(Font.AppTheme.listName)
+            .font(Font.AppTheme.regular)
             .multilineTextAlignment(.leading)
             Spacer()
             
@@ -91,7 +91,7 @@ struct AlternativeIngredientRow: View {
         .foregroundColor(Color.AppTheme.darkYellow)
         .padding(.vertical, 10)
         Divider()
-            .overlay(Color.AppTheme.darkBlue.opacity(0.5))
+            .overlay(Color.AppTheme.darkYellow.opacity(0.5))
     }
     //        .background(
     //            RoundedRectangle(cornerRadius: 12, style: .continuous)
