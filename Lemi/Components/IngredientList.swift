@@ -34,7 +34,7 @@ struct DefaultIngredientRow: View {
             Text(
                 ingredient.name
             )
-            .font(Font.AppTheme.ingredientName)
+            .font(Font.AppTheme.listName)
             .foregroundColor(Color.AppTheme.textPrimary)
             .padding(.leading, 10)
 
@@ -70,7 +70,7 @@ struct AlternativeIngredientRow: View {
                 showingAlternative
                     ? (ingredient.alternative ?? "") : ingredient.name
             )
-            .font(Font.AppTheme.ingredientName)
+            .font(Font.AppTheme.listName)
             .foregroundColor(Color.AppTheme.textSecondary)
             .padding(.leading, 10)
 

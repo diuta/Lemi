@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct SectionCard<Content: View>: View {
-    
+struct PreferenceCard<Content: View>: View {
+
     var title: String
     var bgColor: Color
+    var bgImageName: String
 
     @ViewBuilder var content: Content
 
@@ -20,18 +21,30 @@ struct SectionCard<Content: View>: View {
                 .font(Font.AppTheme.sectionHeader)
                 .foregroundColor(Color.AppTheme.textSecondary)
 
+            Spacer()
+
             content
         }
         .padding(20)
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, maxHeight: 195, alignment: .leading)
+        .background(
+            Image(bgImageName)
+                .resizable()
+                .scaledToFill()
+        )
         .background(bgColor)
-        .cornerRadius(20)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .contentShape(RoundedRectangle(cornerRadius: 20))
     }
 
 }
 
 #Preview {
-    SectionCard(title: "Sample Section", bgColor: .blue) {
+    PreferenceCard(
+        title: "Sample Section",
+        bgColor: .blue,
+        bgImageName: "IngredientAsset"
+    ) {
         Text("Content goes here")
             .foregroundColor(.white)
     }

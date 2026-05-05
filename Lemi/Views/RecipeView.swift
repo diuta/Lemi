@@ -22,7 +22,7 @@ struct RecipeView: View {
                         .resizable()
                         .scaledToFill()
                         .frame(maxWidth: .infinity)
-                        .frame(height: 250)
+                        .frame(width: 370, height: 250)
                         .clipped()
                 } placeholder: {
                     Rectangle()
@@ -34,34 +34,33 @@ struct RecipeView: View {
                 .clipShape(
                     RoundedRectangle(cornerRadius: 30, style: .continuous)
                 )
-                .padding(.horizontal, 20)
 
                 Text(entry.title)
                     .font(.system(size: 24, weight: .bold))
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.7)
-                    .padding(.horizontal, 20)
-
+                
                 Picker("Pilih Tab", selection: $selectedTab) {
                     Text("Ingredients").tag("Ingredients")
                     Text("Steps").tag("Steps")
                     Text("More Like This").tag("More Like This")
                 }
                 .pickerStyle(.segmented)
-                .padding(.horizontal, 20)
 
                 ScrollView(.vertical) {
                     if selectedTab == "Ingredients" {
                         IngredientList(entry: entry)
                     } else if selectedTab == "Steps" {
-                        RecipeSteps(entry: entry)
+                        RecipeStepsSection(entry: entry)
                     } else {
-                        MoreLikeThis(entry: entry)
+                        MoreSection(entry: entry)
                     }
                 }
-
+                MainButton("Add to List", iconName: "plus.app.fill") {
+                    print("damn")
+                }
             }
-//            GenerateButton()
+            .padding(.horizontal, 20)
         }
         .safeAreaPadding(10)
         .navigationBarTitleDisplayMode(.inline)
