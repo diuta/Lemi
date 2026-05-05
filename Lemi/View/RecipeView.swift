@@ -83,6 +83,6 @@ struct RecipeView: View {
 
 #Preview {
     RecipeView(
-        entry: RecipeDataLoader.decodeRecipes()[3]
+        entry: RecipeDataLoader.decodeRecipes().first!
     )
 }
