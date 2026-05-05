@@ -24,7 +24,7 @@ struct MoreLikeThis: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(otherRecipes) { recipe in
-                        CustomCard(entry: recipe)
+                        MoreCard(entry: recipe)
                             .onTapGesture {
                                 selectedRecipe = recipe
                             }

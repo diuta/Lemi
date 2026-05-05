@@ -25,7 +25,9 @@ extension Color {
         static let lightGreen = Color(red: 0.07, green: 0.68, blue: 0.26)
         static let darkGreen = Color(red: 0.05, green: 0.48, blue: 0.18)  // Darker green for pills
 
-        static let yellow = Color(red: 1.0, green: 0.80, blue: 0.16)  // Bright yellow
+        static let normalYellow = Color(hex: "#FFCC23")
+        static let darkYellow = Color(hex: "#BF991A")
+        static let darkerYellow = Color(hex: "#59470C")
 
         // Text Colors
         static let textPrimary = Color.black
@@ -48,11 +50,11 @@ extension Font {
             weight: .bold,
             design: .default
         )
-
-        /// Used for the text inside the selectable pills
-        static let pillText = Font.system(
-            size: 14,
-            weight: .medium,
+        
+        /// Used for the main action button ("Generate")
+        static let buttonText = Font.system(
+            size: 18,
+            weight: .bold,
             design: .default
         )
         
@@ -67,10 +69,10 @@ extension Font {
             weight: .semibold,
             design: .default
         )
-
-        /// Used for the main action button ("Generate")
-        static let buttonText = Font.system(
-            size: 18,
+        
+        /// Used for the text inside the selectable pills
+        static let pillText = Font.system(
+            size: 16,
             weight: .bold,
             design: .default
         )

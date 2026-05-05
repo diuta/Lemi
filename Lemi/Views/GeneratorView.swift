@@ -31,9 +31,9 @@ struct GeneratorView: View {
                         title: "Difficulty",
                         bgColor: Color.AppTheme.lightPink
                     ) {
-                        HStack(spacing: 5) {
+                        HStack(spacing: 10) {
                             ForEach(difficulties, id: \.self) { difficulty in
-                                SelectionPill(
+                                SelectionButton(
                                     text: difficulty.rawValue,
                                     bgColor: Color.AppTheme.darkPink,
                                     isSelected: selectedDifficulty == difficulty
@@ -50,9 +50,9 @@ struct GeneratorView: View {
                         title: "Main Ingredient",
                         bgColor: Color.AppTheme.lightBlue
                     ) {
-                        HStack(spacing: 5) {
+                        HStack(spacing: 10) {
                             ForEach(ingredients, id: \.self) { ingredient in
-                                SelectionPill(
+                                SelectionButton(
                                     text: ingredient.rawValue,
                                     bgColor: Color.AppTheme.darkBlue,
                                     isSelected: selectedIngredient == ingredient
@@ -69,9 +69,9 @@ struct GeneratorView: View {
                         title: "Taste Profile",
                         bgColor: Color.AppTheme.lightGreen
                     ) {
-                        HStack(spacing: 5) {
+                        HStack(spacing: 10) {
                             ForEach(tastes, id: \.self) { taste in
-                                SelectionPill(
+                                SelectionButton(
                                     text: taste.rawValue,
                                     bgColor: Color.AppTheme.darkGreen,
                                     isSelected: selectedTaste == taste
@@ -86,7 +86,7 @@ struct GeneratorView: View {
 
                     Spacer()
 
-                    Button(action: {
+                    MainButton("Generate Menu", iconName: "bookmark.fill") {
                         if let result = RecipeGenerator.generate(
                             taste: selectedTaste,
                             difficulty: selectedDifficulty,
@@ -96,16 +96,7 @@ struct GeneratorView: View {
                         } else {
                             showErrorAlert = true
                         }
-                    }) {
-                        Text("Generate")
-                            .font(.AppTheme.buttonText)
-                            .foregroundColor(.AppTheme.textPrimary)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background(Color.AppTheme.yellow)
-                            .clipShape(Capsule())
                     }
-                    .padding(.bottom, 10)
                 }
                 .padding(16)
             }
