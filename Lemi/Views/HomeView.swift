@@ -5,27 +5,29 @@
 //  Created by Ananda Rachmawati Purwanto on 05/05/26.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct HomeView: View {
     @State private var loadedRecipes: [RecipeModel] = []
-    
+
     @Query private var savedBookmarks: [BookmarkedRecipeID]
     @Environment(\.modelContext) private var modelContext
-    
+
     var body: some View {
         NavigationStack {
-            VStack(alignment:.leading, spacing: 40){
-                VStack(alignment: .leading, spacing: 20){
-                    VStack(alignment: .leading){
+            VStack(alignment: .leading, spacing: 40) {
+                VStack(alignment: .leading, spacing: 20) {
+                    VStack(alignment: .leading) {
                         Text("Ready to cook?")
                             .font(.AppTheme.sectionHeader.weight(.medium))
                         Text("Let's begin!")
                             .font(.AppTheme.screenTitle)
                     }
-                
-                    Text("Let’s find something from your saves that you'll\nlove cooking.").font(.AppTheme.ingredientName.weight(.regular))
+
+                    Text(
+                        "Let’s find something from your saves that you'll\nlove cooking."
+                    ).font(.AppTheme.listName)
                 }
 
             }
@@ -41,19 +43,19 @@ struct HomeView: View {
                             .foregroundColor(.gray)
                     }
                 } else {
-                    // Populated List
                     ScrollView {
                         ForEach(savedBookmarks) { bookmark in
-                            // Match the ID to the JSON data
                             if let fullRecipe = getRecipe(for: bookmark.id) {
-                                NavigationLink(destination: RecipeView(entry: fullRecipe)) {
+                                NavigationLink(
+                                    destination: RecipeView(entry: fullRecipe)
+                                ) {
                                     // Extract the UI into a clean subview
                                     CardMenu(entry: fullRecipe)
                                 }
                             }
                         }
-                        .padding(16)                    }
-                    // Makes the list look cleaner on iOS
+                        .padding(16)
+                    }
                     .listStyle(.plain)
                 }
             }
@@ -67,11 +69,11 @@ struct HomeView: View {
                     .foregroundColor(Color.AppTheme.textPrimary)
                     .padding(.horizontal, 24)
                     .padding(.vertical, 16)
-                    .background(Color.AppTheme.yellow)
+                    .background(Color.AppTheme.normalYellow)
                     .clipShape(Capsule())
                     .shadow(color: .black.opacity(0.15), radius: 8, x: 0, y: 4)
                 }
-                .padding(.bottom, 16) // Keeps it comfortably above the bottom edge
+                .padding(.bottom, 16)
             }
         }
         .background(Color.AppTheme.mainBackground)
@@ -80,20 +82,18 @@ struct HomeView: View {
                 loadedRecipes = RecipeDataLoader.decodeRecipes()
             }
         }
-        
-        
+
     }
     private func getRecipe(for id: Int) -> RecipeModel? {
         return loadedRecipes.first(where: { $0.id == id })
     }
-    
+
     private func deleteBookmarks(offsets: IndexSet) {
         for index in offsets {
             modelContext.delete(savedBookmarks[index])
         }
     }
 }
-
 
 #Preview {
     HomeView()

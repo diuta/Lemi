@@ -43,13 +43,10 @@ struct RecipeView: View {
                 .clipShape(
                     RoundedRectangle(cornerRadius: 30, style: .continuous)
                 )
-                .padding(.horizontal, 20)
-                
                 Text(entry.title)
                     .font(.system(size: 24, weight: .bold))
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.7)
-                    .padding(.horizontal, 20)
                 
                 Picker("Pilih Tab", selection: $selectedTab) {
                     Text("Ingredients").tag("Ingredients")
@@ -57,57 +54,35 @@ struct RecipeView: View {
                     Text("More Like This").tag("More Like This")
                 }
                 .pickerStyle(.segmented)
-                .padding(.horizontal, 20)
-                
                 ScrollView(.vertical) {
                     if selectedTab == "Ingredients" {
                         IngredientList(entry: entry)
                     } else if selectedTab == "Steps" {
-                        RecipeSteps(entry: entry)
+                        RecipeStepsSection(entry: entry)
                     } else {
-                        MoreLikeThis(entry: entry)
+                        MoreSection(entry: entry)
                     }
                 }
-                
-            }
-            Button(action: {
-                toggleBookmark()
-            }) {
-                HStack(spacing: 8) {
-                    // Switch the icon
-                    Image(systemName: isBookmarked ? "bookmark.slash.fill" : "bookmark")
-                    
-                    // Switch the text to be an ACTION, not just a status
-                    Text(isBookmarked ? "Remove from Bookmark" : "Save to Bookmark")
-                        .font(.system(size: 18, weight: .bold))
+                MainButton(isBookmarked ? "Remove from Bookmark" : "Save to Bookmark", iconName: isBookmarked ? "bookmark.slash.fill" : "bookmark") {
+                    toggleBookmark()
                 }
-                .font(.AppTheme.buttonText)
-                .foregroundColor(.AppTheme.textPrimary)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 16)
-                .background(Color.AppTheme.yellow)
-                .clipShape(Capsule())
-                
             }
-            .padding(.bottom, 10)
-            .safeAreaPadding(10)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text(
-                        String(
-                            "\(entry.tasteProfile) | \(entry.mainIngredient) |  \(entry.difficulty)"
-                                .capitalized
-                        )
-                    )
+            .padding(.horizontal, 20)
+        }
+        .safeAreaPadding(10)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text(
+                    "\(entry.tasteProfile) \(entry.mainIngredient) \(entry.difficulty)"
+                        .capitalized
+                )
                     .font(.system(size: 17, weight: .semibold))
                     .foregroundColor(Color.AppTheme.textPrimary)
-                }
             }
-            
         }
-        
     }
+
     private func toggleBookmark() {
         if let bookmarkToDelete = savedBookmarks.first(where: { $0.id == entry.id }) {
             modelContext.delete(bookmarkToDelete)

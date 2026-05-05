@@ -27,13 +27,14 @@ struct GeneratorView: View {
                     .foregroundColor(Color.AppTheme.textPrimary)
                     .padding()
                 VStack(spacing: 15) {
-                    SectionCard(
+                    PreferenceCard(
                         title: "Difficulty",
-                        bgColor: Color.AppTheme.lightPink
+                        bgColor: Color.AppTheme.lightPink,
+                        bgImageName: "DifficultyAsset"
                     ) {
-                        HStack(spacing: 5) {
+                        HStack(spacing: 10) {
                             ForEach(difficulties, id: \.self) { difficulty in
-                                SelectionPill(
+                                SelectionButton(
                                     text: difficulty.rawValue.capitalized,
                                     bgColor: Color.AppTheme.darkPink,
                                     isSelected: selectedDifficulty == difficulty
@@ -44,15 +45,16 @@ struct GeneratorView: View {
                                 }
                             }
                         }
-
                     }
-                    SectionCard(
+                    
+                    PreferenceCard(
                         title: "Main Ingredient",
-                        bgColor: Color.AppTheme.lightBlue
+                        bgColor: Color.AppTheme.lightBlue,
+                        bgImageName: "IngredientAsset"
                     ) {
-                        HStack(spacing: 5) {
+                        HStack(spacing: 10) {
                             ForEach(ingredients, id: \.self) { ingredient in
-                                SelectionPill(
+                                SelectionButton(
                                     text: ingredient.rawValue.capitalized,
                                     bgColor: Color.AppTheme.darkBlue,
                                     isSelected: selectedIngredient == ingredient
@@ -63,15 +65,16 @@ struct GeneratorView: View {
                                 }
                             }
                         }
-
                     }
-                    SectionCard(
+                    
+                    PreferenceCard(
                         title: "Taste Profile",
-                        bgColor: Color.AppTheme.lightGreen
+                        bgColor: Color.AppTheme.lightGreen,
+                        bgImageName: "TasteAsset"
                     ) {
-                        HStack(spacing: 5) {
+                        HStack(spacing: 10) {
                             ForEach(tastes, id: \.self) { taste in
-                                SelectionPill(
+                                SelectionButton(
                                     text: taste.rawValue.capitalized,
                                     bgColor: Color.AppTheme.darkGreen,
                                     isSelected: selectedTaste == taste
@@ -86,7 +89,7 @@ struct GeneratorView: View {
 
                     Spacer()
 
-                    Button(action: {
+                    MainButton("Generate Menu", iconName: "bookmark.fill") {
                         if let result = RecipeGenerator.generate(
                             taste: selectedTaste,
                             difficulty: selectedDifficulty,
@@ -96,16 +99,7 @@ struct GeneratorView: View {
                         } else {
                             showErrorAlert = true
                         }
-                    }) {
-                        Text("Generate")
-                            .font(.AppTheme.buttonText)
-                            .foregroundColor(.AppTheme.textPrimary)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background(Color.AppTheme.yellow)
-                            .clipShape(Capsule())
                     }
-                    .padding(.bottom, 10)
                 }
                 .padding(16)
             }

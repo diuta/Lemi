@@ -14,8 +14,8 @@ extension Color {
         static let mainBackground = Color(red: 0.96, green: 0.96, blue: 0.94)  // Soft off-white
 
         // Difficulty (Pink)
-        static let lightPink = Color(red: 1.0, green: 0.53, blue: 0.76)
-        static let darkPink = Color(red: 0.82, green: 0.42, blue: 0.62)  // Darker pink for pills
+        static let lightPink = Color(hex: "#FF88CF")
+        static let darkPink = Color(hex: "#CC6DA6")
 
         // Main Ingredient (Blue)
         static let lightBlue = Color(red: 0.05, green: 0.53, blue: 0.92)
@@ -25,7 +25,9 @@ extension Color {
         static let lightGreen = Color(red: 0.07, green: 0.68, blue: 0.26)
         static let darkGreen = Color(red: 0.05, green: 0.48, blue: 0.18)  // Darker green for pills
 
-        static let yellow = Color(red: 1.0, green: 0.80, blue: 0.16)  // Bright yellow
+        static let normalYellow = Color(hex: "#FFCC23")
+        static let darkYellow = Color(hex: "#BF991A")
+        static let darkerYellow = Color(hex: "#59470C")
 
         // Text Colors
         static let textPrimary = Color.black
@@ -44,21 +46,21 @@ extension Font {
 
         /// Used for card titles like "Difficulty", "Main Ingredient"
         static let sectionHeader = Font.system(
+            size: 24,
+            weight: .bold,
+            design: .default
+        )
+        
+        /// Used for the main action button ("Generate")
+        static let buttonText = Font.system(
             size: 18,
             weight: .bold,
             design: .default
         )
-
-        /// Used for the text inside the selectable pills
-        static let pillText = Font.system(
-            size: 14,
-            weight: .medium,
-            design: .default
-        )
         
-        static let ingredientName = Font.system(
+        static let listName = Font.system(
             size: 16,
-            weight: .medium,
+            weight: .regular,
             design: .default
         )
         
@@ -67,10 +69,10 @@ extension Font {
             weight: .semibold,
             design: .default
         )
-
-        /// Used for the main action button ("Generate")
-        static let buttonText = Font.system(
-            size: 18,
+        
+        /// Used for the text inside the selectable pills
+        static let pillText = Font.system(
+            size: 16,
             weight: .bold,
             design: .default
         )
