@@ -41,7 +41,7 @@ struct DefaultIngredientRow: View {
             Text(
                 ingredient.name
             )
-            .font(Font.AppTheme.ingredientName)
+            .font(Font.AppTheme.listName)
             .foregroundColor(Color.AppTheme.textPrimary)
             .multilineTextAlignment(.leading)
             Spacer()
@@ -72,7 +72,7 @@ struct AlternativeIngredientRow: View {
                 showingAlternative
                 ? (ingredient.alternative ?? "") : ingredient.name
             )
-            .font(Font.AppTheme.ingredientName)
+            .font(Font.AppTheme.listName)
             .multilineTextAlignment(.leading)
             Spacer()
             

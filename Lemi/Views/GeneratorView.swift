@@ -84,7 +84,6 @@ struct GeneratorView: View {
                                 }
                             }
                         }
-
                     }
 
                     Spacer()
