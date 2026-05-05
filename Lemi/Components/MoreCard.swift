@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MoreCard: View {
-    
+
     let entry: RecipeModel
 
     var body: some View {
@@ -28,21 +28,21 @@ struct MoreCard: View {
             .clipShape(RoundedRectangle(cornerRadius: 3))
             .clipped()
 
-            Text(entry.title)
-                .font(.system(size: 13, weight: .bold))
-                .multilineTextAlignment(.center)
-                .minimumScaleFactor(0.7)
+            VStack {
+                Text(entry.title)
+                    .font(.system(size: 13, weight: .bold))
+                    .multilineTextAlignment(.center)
+                    .minimumScaleFactor(0.7)
+            }
+            .frame(height: 40)
 
         }
         .padding(10)
-        .frame(width: 100, height: 158)
-        .background(Color.white)
-        .clipShape(RoundedRectangle(cornerRadius: 8))
-        .overlay(
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(Color.AppTheme.lightGreen, lineWidth: 1)
+        .frame(width: 100, height: 158, alignment: .top)
+        .background(
+            RoundedRectangle(cornerRadius: 6)
+                .fill(Color(red: 0.87, green: 0.94, blue: 0.92))
         )
-        .padding(5)
 
     }
 }
