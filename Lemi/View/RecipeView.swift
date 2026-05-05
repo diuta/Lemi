@@ -12,7 +12,7 @@ struct RecipeView: View {
     
     let entry: RecipeModel
     
-    @State private var selectedTab = "Steps"
+    @State private var selectedTab = "Ingredients"
     
     @Environment(\.modelContext) private var modelContext
     
@@ -31,13 +31,13 @@ struct RecipeView: View {
                         .resizable()
                         .scaledToFill()
                         .frame(maxWidth: .infinity)
-                        .frame(height: 250)
+                        .frame(width: 370, height: 250)
                         .clipped()
                 } placeholder: {
                     Rectangle()
                         .fill(Color.gray.opacity(0.15))
                         .frame(maxWidth: .infinity)
-                        .frame(height: 250)
+                        .frame(width: 370, height: 250)
                         .overlay { ProgressView() }
                 }
                 .clipShape(
@@ -110,10 +110,8 @@ struct RecipeView: View {
     }
     private func toggleBookmark() {
         if let bookmarkToDelete = savedBookmarks.first(where: { $0.id == entry.id }) {
-            // It exists, so remove the ID from SwiftData
             modelContext.delete(bookmarkToDelete)
         } else {
-            // It doesn't exist, so save just the ID
             let newBookmark = BookmarkedRecipeID(id: entry.id)
             modelContext.insert(newBookmark)
         }

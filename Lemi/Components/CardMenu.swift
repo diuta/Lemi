@@ -12,58 +12,53 @@ struct CardMenu: View {
     let entry: RecipeModel
     
     var body: some View {
-        VStack(spacing: 14) {
-            ZStack(alignment: .topTrailing){
-                AsyncImage(
-                    url: URL(
-                        string: entry.imageLink ?? ""
-                    )
-                ) { image in
+        VStack(alignment: .leading, spacing: 14) {
+            if let imageString = entry.imageLink, let url = URL(string: imageString) {
+                AsyncImage(url: url) {
+                    image in
                     image
-                        .resizable()
-                        .scaledToFill()
+                            .resizable()
+                            .scaledToFill()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 225)
                 } placeholder: {
-                    ProgressView()
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.15))
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 225)
+                        .overlay { ProgressView() }
                 }
-                .frame(maxWidth: .infinity, maxHeight: 225)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                .clipped()
-                
-                LabelPreference(entry: entry)
-                    .padding(10)
-                
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+            } else {
+                FallbackThumbnail()
             }
             
+            Text(entry.title)
+                .font(.system(size: 22, weight: .bold))
+                .foregroundColor(Color.AppTheme.textPrimary)
             
-            VStack (alignment: .leading, spacing: 5){
-                Text(entry.title)
-                    .font(.system(size: 22, weight: .bold))
-                    .foregroundColor(Color.AppTheme.textPrimary)
-                
-                //ganti ke dynamic
-                Text("Addded 04 May 2026")
-                    .foregroundColor(Color.AppTheme.darkPink)
-                
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            //.padding(.horizontal, 10)
+            LabelPreference(entry: entry)
+                .padding(10)
+            
         }
-        .padding(15)
-        .frame(maxWidth: 370)
-        .background(Color.white)
-        .clipShape(RoundedRectangle(cornerRadius: 20))
-        .overlay(
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(Color.AppTheme.lightGreen, lineWidth: 1)
-        )
-        //.padding(5)
-        .buttonStyle(PlainButtonStyle())
-        .shadow(
-            color: Color.black.opacity(0.15),
-            radius: 4, 
-            x: 0,
-            y: 6
-        )
+        .padding(16)
+        .background(Color.AppTheme.textSecondary)
+        .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
+        .shadow(color: .black.opacity(0.08), radius: 15, x: 0, y: 8)
+    }
+    
+}
+
+
+struct FallbackThumbnail: View {
+    var body: some View {
+        RoundedRectangle(cornerRadius: 12)
+            .fill(Color.gray.opacity(0.2))
+            .frame(width: 70, height: 70)
+            .overlay(
+                Image(systemName: "fork.knife")
+                    .foregroundColor(.gray)
+            )
     }
 }
 

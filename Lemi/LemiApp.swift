@@ -5,7 +5,7 @@ import SwiftData
 struct LemiApp: App {
     var body: some Scene {
         WindowGroup {
-            BookmarkTestView()
+            HomeView()
         }
         // This spins up the SwiftData database for your bookmark IDs
         .modelContainer(for: BookmarkedRecipeID.self)

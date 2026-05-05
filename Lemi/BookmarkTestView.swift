@@ -117,17 +117,17 @@ struct RecipeRowView: View {
 }
 
 // A tiny reusable gray square for recipes with no images
-struct FallbackThumbnail: View {
-    var body: some View {
-        RoundedRectangle(cornerRadius: 12)
-            .fill(Color.gray.opacity(0.2))
-            .frame(width: 70, height: 70)
-            .overlay(
-                Image(systemName: "fork.knife")
-                    .foregroundColor(.gray)
-            )
-    }
-}
+//struct FallbackThumbnail: View {
+//    var body: some View {
+//        RoundedRectangle(cornerRadius: 12)
+//            .fill(Color.gray.opacity(0.2))
+//            .frame(width: 70, height: 70)
+//            .overlay(
+//                Image(systemName: "fork.knife")
+//                    .foregroundColor(.gray)
+//            )
+//    }
+//}
 
 #Preview {
     BookmarkTestView()
