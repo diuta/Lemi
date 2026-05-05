@@ -16,7 +16,7 @@ struct IngredientList: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 0) {
-                if (!hasCompletedOnboarding) {
+                if (!hasCompletedOnboarding && isOnboardingVisible) {
                     HStack {
                         Text("iconnya")
                             .foregroundColor(Color.AppTheme.textSecondary)
@@ -28,7 +28,7 @@ struct IngredientList: View {
                             withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
                                 
                                 isOnboardingVisible = false
-                                UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
+                                UserDefaults.standard.set(true, forKey: "completedOnboarding")
                             }
                         }){
                            Image(systemName: "xmark.circle" )
