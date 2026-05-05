@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct RecipeModel: Identifiable, Hashable, Codable {
     let id: Int
@@ -26,6 +27,14 @@ struct Ingredient: Hashable, Codable {
     let alternativeMeasurement: String?
 }
 
+@Model
+class BookmarkedRecipeID {
+    @Attribute(.unique) var id : Int
+    
+    init(id: Int) {
+        self.id = id
+    }
+}
 //struct SampleData {
 //    static let recipes: [RecipeModel] = [
 //        RecipeModel(
