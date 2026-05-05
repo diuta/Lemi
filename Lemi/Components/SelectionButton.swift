@@ -34,7 +34,7 @@ struct SelectedView: View {
 
     var body: some View {
         Text(text)
-            .font(Font.AppTheme.pillText)
+            .font(Font.AppTheme.content)
             .foregroundColor(
                 bgColor
             )
@@ -63,7 +63,7 @@ struct DefaultView: View {
 
     var body: some View {
         Text(text)
-            .font(Font.AppTheme.pillText)
+            .font(Font.AppTheme.content)
             .foregroundColor(
                 .AppTheme.mainBackground
             )

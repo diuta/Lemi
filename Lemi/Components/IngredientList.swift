@@ -34,7 +34,7 @@ struct DefaultIngredientRow: View {
             Text(
                 ingredient.name
             )
-            .font(Font.AppTheme.listName)
+            .font(Font.AppTheme.regular)
             .foregroundColor(Color.AppTheme.textPrimary)
             .padding(.leading, 10)
 
@@ -43,7 +43,7 @@ struct DefaultIngredientRow: View {
             Text(
                 ingredient.measurement
             )
-            .font(Font.AppTheme.ingredientMeasurement)
+            .font(Font.AppTheme.boldRegular)
             .foregroundColor(Color.AppTheme.textPrimary)
             .padding(.trailing, 10)
         }
@@ -70,7 +70,7 @@ struct AlternativeIngredientRow: View {
                 showingAlternative
                     ? (ingredient.alternative ?? "") : ingredient.name
             )
-            .font(Font.AppTheme.listName)
+            .font(Font.AppTheme.regular)
             .foregroundColor(Color.AppTheme.textSecondary)
             .padding(.leading, 10)
 
@@ -81,7 +81,7 @@ struct AlternativeIngredientRow: View {
                     ? (ingredient.alternativeMeasurement ?? "")
                     : ingredient.measurement
             )
-            .font(Font.AppTheme.ingredientMeasurement)
+            .font(Font.AppTheme.boldRegular)
             .foregroundColor(Color.AppTheme.textSecondary)
             .padding(.trailing, 10)
 

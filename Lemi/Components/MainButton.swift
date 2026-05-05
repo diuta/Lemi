@@ -25,12 +25,12 @@ struct MainButton: View {
             HStack(spacing: 5) {
                 if let icon = iconName {
                     Image(systemName: icon)
-                        .font(.AppTheme.buttonText)
+                        .font(.AppTheme.sectionTitle)
                 }
 
                 Text(title)
             }
-            .font(.AppTheme.buttonText)
+            .font(.AppTheme.sectionTitle)
             .foregroundColor(Color.AppTheme.darkerYellow)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 16)
