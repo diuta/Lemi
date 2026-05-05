@@ -27,9 +27,10 @@ struct GeneratorView: View {
                     .foregroundColor(Color.AppTheme.textPrimary)
                     .padding()
                 VStack(spacing: 15) {
-                    SectionCard(
+                    PreferenceCard(
                         title: "Difficulty",
-                        bgColor: Color.AppTheme.lightPink
+                        bgColor: Color.AppTheme.lightPink,
+                        bgImageName: "DifficultyAsset"
                     ) {
                         HStack(spacing: 10) {
                             ForEach(difficulties, id: \.self) { difficulty in
@@ -44,11 +45,12 @@ struct GeneratorView: View {
                                 }
                             }
                         }
-
                     }
-                    SectionCard(
+                    
+                    PreferenceCard(
                         title: "Main Ingredient",
-                        bgColor: Color.AppTheme.lightBlue
+                        bgColor: Color.AppTheme.lightBlue,
+                        bgImageName: "IngredientAsset"
                     ) {
                         HStack(spacing: 10) {
                             ForEach(ingredients, id: \.self) { ingredient in
@@ -63,11 +65,12 @@ struct GeneratorView: View {
                                 }
                             }
                         }
-
                     }
-                    SectionCard(
+                    
+                    PreferenceCard(
                         title: "Taste Profile",
-                        bgColor: Color.AppTheme.lightGreen
+                        bgColor: Color.AppTheme.lightGreen,
+                        bgImageName: "TasteAsset"
                     ) {
                         HStack(spacing: 10) {
                             ForEach(tastes, id: \.self) { taste in
