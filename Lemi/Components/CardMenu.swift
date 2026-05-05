@@ -39,10 +39,12 @@ struct CardMenu: View {
             
             LabelPreference(entry: entry)
                 .padding(10)
+                .frame(width: 300)
             
         }
         .padding(16)
-        .background(Color.AppTheme.textSecondary)
+        .background(Color.AppTheme.normalYellow.opacity(0.1))
+        .frame(maxWidth: .infinity)
         .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
         .shadow(color: .black.opacity(0.08), radius: 15, x: 0, y: 8)
     }

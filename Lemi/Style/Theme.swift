@@ -37,21 +37,21 @@ extension Color {
 
 extension Font {
     struct AppTheme {
-        /// Used for the main "Choose your ..." header
+        // Used for the main "Choose your ..." header
         static let screenTitle = Font.system(
             size: 32,
             weight: .bold,
             design: .default
         )
 
-        /// Used for card titles like "Difficulty", "Main Ingredient"
+        // Used for card titles like "Difficulty", "Main Ingredient"
         static let sectionHeader = Font.system(
             size: 24,
             weight: .bold,
             design: .default
         )
         
-        /// Used for the main action button ("Generate")
+        // Used for the main action button ("Generate")
         static let buttonText = Font.system(
             size: 18,
             weight: .bold,
@@ -70,7 +70,7 @@ extension Font {
             design: .default
         )
         
-        /// Used for the text inside the selectable pills
+        // Used for the text inside the selectable pills
         static let pillText = Font.system(
             size: 16,
             weight: .bold,

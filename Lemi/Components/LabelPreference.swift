@@ -15,22 +15,22 @@ struct LabelPreference: View {
             // Difficulty (Pink)
             TagPill(
                 text: entry.difficulty.rawValue.capitalized,
-                bgColor: Color.pink.opacity(0.15),
-                textColor: Color.pink
+                bgColor: Color.AppTheme.lightPink,
+                textColor: Color.AppTheme.textSecondary
             )
             
             // Main Ingredient (Blue)
             TagPill(
                 text: entry.mainIngredient.rawValue.capitalized,
-                bgColor: Color.blue.opacity(0.2),
-                textColor: Color.blue.opacity(0.8)
+                bgColor: Color.AppTheme.lightBlue,
+                textColor: Color.AppTheme.textSecondary
             )
             
             // Taste Profile (Green)
             TagPill(
                 text: entry.tasteProfile.rawValue.capitalized,
-                bgColor: Color.green.opacity(0.2),
-                textColor: Color.green.opacity(0.9)
+                bgColor: Color.AppTheme.lightGreen,
+                textColor: Color.AppTheme.textSecondary
             )
         }
     }
@@ -47,6 +47,7 @@ struct TagPill: View {
             .foregroundColor(textColor)
             .padding(.horizontal, 16)
             .padding(.vertical, 8)
+            .frame(maxWidth: .infinity)
             .background(bgColor)
             .clipShape(Capsule())
     }
