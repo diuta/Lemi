@@ -6,13 +6,22 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct RecipeView: View {
-
+    
     let entry: RecipeModel
-
-    @State private var selectedTab = "Steps"
-
+    
+    @State private var selectedTab = "Ingredients"
+    
+    @Environment(\.modelContext) private var modelContext
+    
+    @Query private var savedBookmarks: [BookmarkedRecipeID]
+    
+    private var isBookmarked: Bool {
+        savedBookmarks.contains(where: { $0.id == entry.id })
+    }
+    
     var body: some View {
         VStack {
             VStack(spacing: 20) {
@@ -28,13 +37,12 @@ struct RecipeView: View {
                     Rectangle()
                         .fill(Color.gray.opacity(0.15))
                         .frame(maxWidth: .infinity)
-                        .frame(height: 250)
+                        .frame(width: 370, height: 250)
                         .overlay { ProgressView() }
                 }
                 .clipShape(
                     RoundedRectangle(cornerRadius: 30, style: .continuous)
                 )
-
                 Text(entry.title)
                     .font(.system(size: 24, weight: .bold))
                     .multilineTextAlignment(.center)
@@ -52,8 +60,8 @@ struct RecipeView: View {
                         MoreSection(entry: entry)
                     }
                 }
-                MainButton("Add to List", iconName: "plus.app.fill") {
-                    print("damn")
+                MainButton(isBookmarked ? "Remove from Bookmark" : "Save to Bookmark", iconName: isBookmarked ? "bookmark.slash.fill" : "bookmark") {
+                    toggleBookmark()
                 }
             }
             .padding(.horizontal, 20)
@@ -63,21 +71,31 @@ struct RecipeView: View {
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Text(
-                    String(
-                        "\(entry.tasteProfile) \(entry.mainIngredient) \(entry.difficulty)"
-                            .capitalized
-                    )
+                    "\(entry.tasteProfile) \(entry.mainIngredient) \(entry.difficulty)"
+                        .capitalized
                 )
-                .font(.system(size: 17, weight: .semibold))
-                .foregroundColor(Color.AppTheme.textPrimary)
+                    .font(.system(size: 17, weight: .semibold))
+                    .foregroundColor(Color.AppTheme.textPrimary)
             }
         }
+    }
 
+    private func toggleBookmark() {
+        if let bookmarkToDelete = savedBookmarks.first(where: {
+            $0.id == entry.id }) {
+            print("test gamasuk")
+            modelContext.delete(bookmarkToDelete)
+        } else {
+            print("test masuk")
+            let newBookmark = BookmarkedRecipeID(id: entry.id)
+            modelContext.insert(newBookmark)
+        }
     }
 }
 
+
 #Preview {
     RecipeView(
-        entry: RecipeDataLoader.decodeRecipes()[3]
+        entry: RecipeDataLoader.decodeRecipes().first!
     )
 }

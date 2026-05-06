@@ -9,10 +9,32 @@ import SwiftUI
 
 struct IngredientList: View {
     let entry: RecipeModel
+    @AppStorage("completedOnboarding") private var hasCompletedOnboarding: Bool = false
+    @State private var isOnboardingVisible: Bool = true
     
+
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 0) {
+                if (!hasCompletedOnboarding && isOnboardingVisible) {
+                    HStack {
+                        Text("iconnya")
+                            .foregroundColor(Color.AppTheme.textSecondary)
+                        Text("tulisan yang bilang kalo alternative ingredients available")
+                        Spacer()
+                        Button (
+                            action: {
+                            withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                                
+                                isOnboardingVisible = false
+                                UserDefaults.standard.set(true, forKey: "completedOnboarding")
+                            }
+                        }){
+                           Image(systemName: "xmark.circle" )
+                        }
+                    }
+                    .background(Color.AppTheme.normalBlue.opacity(0.1))
+                }
                 ForEach(entry.ingredients, id: \.self) { ingredient in
                     if ingredient.alternative != nil {
                         AlternativeIngredientRow(ingredient: ingredient)

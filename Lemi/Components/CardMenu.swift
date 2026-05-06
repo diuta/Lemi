@@ -1,0 +1,73 @@
+//
+//  CardMenu.swift
+//  Lemi
+//
+//  Created by Ananda Rachmawati Purwanto on 05/05/26.
+//
+
+import SwiftUI
+
+struct CardMenu: View {
+    
+    let entry: RecipeModel
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            if let imageString = entry.imageLink, let url = URL(string: imageString) {
+                AsyncImage(url: url) {
+                    image in
+                    image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 225)
+                } placeholder: {
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.15))
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 225)
+                        .overlay { ProgressView() }
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+            } else {
+                FallbackThumbnail()
+            }
+            
+            Text(entry.title)
+                .font(.system(size: 22, weight: .bold))
+                .foregroundColor(Color.AppTheme.textPrimary)
+            
+            LabelPreference(entry: entry)
+                .padding(10)
+                .frame(width: 300)
+            
+        }
+        .padding(16)
+        .background(Color.AppTheme.normalYellow.opacity(0.1))
+        .frame(maxWidth: .infinity)
+        .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
+        .shadow(color: .black.opacity(0.08), radius: 15, x: 0, y: 8)
+    }
+    
+}
+
+
+struct FallbackThumbnail: View {
+    var body: some View {
+        RoundedRectangle(cornerRadius: 12)
+            .fill(Color.gray.opacity(0.2))
+            .frame(width: 70, height: 70)
+            .overlay(
+                Image(systemName: "fork.knife")
+                    .foregroundColor(.gray)
+            )
+    }
+}
+
+#Preview {
+    CardMenu(
+        entry: RecipeDataLoader.decodeRecipes().first!
+    )
+    
+}
+

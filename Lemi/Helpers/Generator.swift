@@ -14,6 +14,8 @@ struct RecipeGenerator {
         ingredient: MainIngredient?
     ) -> RecipeModel? {
         
+        print("INN")
+        
         let recipes: [RecipeModel] = RecipeDataLoader.decodeRecipes()
         
         return recipes.filter { recipe in

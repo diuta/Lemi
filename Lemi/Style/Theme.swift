@@ -10,20 +10,16 @@ import SwiftUI
 
 extension Color {
     struct AppTheme {
-        // Background
         static let mainBackground = Color(hex: "#FFFFF7")
 
-        // Difficulty (Pink)
         static let activePink = Color(hex: "#CC6DA6")
         static let normalPink = Color(hex: "#FF88CF")
         static let darkPink = Color(hex: "#CC6DA6")
 
-        // Main Ingredient (Blue)
         static let activeBlue = Color(hex: "#D9ECFA")
         static let normalBlue = Color(hex: "#0176CA")
         static let darkBlue = Color(hex: "#0162A8")
 
-        // Taste Profile (Green)
         static let normalGreen = Color(hex: "#00AF47")
         static let darkGreen = Color(hex: "#008335")
 
@@ -33,7 +29,6 @@ extension Color {
         static let darkYellow = Color(hex: "#BF991A")
         static let darkerYellow = Color(hex: "#59470C")
 
-        // Text Colors
         static let textPrimary = Color(hex: "#151515")
         static let textSecondary = Color(hex: "#FFFFF7")
     }
