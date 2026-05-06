@@ -40,14 +40,10 @@ struct RecipeView: View {
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.7)
                 
-                Picker("Pilih Tab", selection: $selectedTab) {
-                    Text("Ingredients").tag("Ingredients")
-                    Text("Steps").tag("Steps")
-                    Text("More Like This").tag("More Like This")
-                }
-                .pickerStyle(.segmented)
+                CustomRecipeTabPicker(selectedTab: $selectedTab)
+                    .padding(.vertical, 10) 
 
-                ScrollView(.vertical) {
+                ScrollView(.vertical, showsIndicators: false) {
                     if selectedTab == "Ingredients" {
                         IngredientList(entry: entry)
                     } else if selectedTab == "Steps" {

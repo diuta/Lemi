@@ -9,28 +9,53 @@ import Foundation
 import SwiftUI
 
 struct MoreSection: View {
-
+    
     let entry: RecipeModel
     var otherRecipes: [RecipeModel] {
         MoreLikeThisGenerator.generate(currRecipe: entry)
     }
-
+    
     @State private var selectedRecipe: RecipeModel? = nil
-
+    
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 20) {
-                ForEach(otherRecipes) { recipe in
-                    MoreCard(entry: recipe)
-                        .onTapGesture {
-                            selectedRecipe = recipe
-                        }
+        ZStack {
+            Rectangle()
+                .fill(Color.AppTheme.lightYellow) 
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 15) {
+                    ForEach(otherRecipes) { recipe in
+                        MoreCard(entry: recipe)
+                            .onTapGesture {
+                                selectedRecipe = recipe
+                            }
+                    }
                 }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 16)
             }
-            .padding(.vertical, 15)
+            
+
+            .overlay(alignment: .leading) {
+                Rectangle()
+                    .fill(Color.AppTheme.lightYellow)
+                    .frame(width: 15)
+            }
+            .overlay(alignment: .trailing) {
+                Rectangle()
+                    .fill(Color.AppTheme.lightYellow)
+                    .frame(width: 15)
+            }
+            
+            
         }
-        .navigationDestination(item: $selectedRecipe) {
-            recipe in
+        .frame(height: 210)
+        .clipShape(
+            RoundedRectangle(
+                cornerRadius: 15,
+                style: .continuous
+            )
+        )
+        .navigationDestination(item: $selectedRecipe) { recipe in
             RecipeView(entry: recipe)
         }
     }
