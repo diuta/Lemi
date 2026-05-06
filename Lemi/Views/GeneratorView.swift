@@ -84,7 +84,7 @@ struct GeneratorView: View {
 
                 Spacer()
 
-                MainButton("Generate Menu", iconName: "bookmark.fill") {
+                MainButton("Generate Menu", iconName: "sparkles") {
                     if let result = RecipeGenerator.generate(
                         taste: selectedTaste,
                         difficulty: selectedDifficulty,

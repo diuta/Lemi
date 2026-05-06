@@ -79,6 +79,7 @@ struct HomeView: View {
                                 MainButton("Generate Menu", iconName: "sparkles") {
                                     toGenerator = true
                                 }
+                                .frame(width: 200)
                             }
                             .padding(.trailing, 20)
                             .padding(.bottom, 30)
