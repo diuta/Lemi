@@ -44,37 +44,34 @@ struct IngredientList: View {
                 }
             }
         }
-        .padding(.horizontal, 20)
+        //.padding(.horizontal, 20)
     }
 }
 
 struct DefaultIngredientRow: View {
     let ingredient: Ingredient
-
+    
     var body: some View {
         HStack {
-            Text(
-                ingredient.name.capitalized
-            )
-            .font(Font.AppTheme.regular)
-            .foregroundColor(Color.AppTheme.textPrimary)
-            .padding(.leading, 10)
-
-            Spacer()
-
             Text(
                 ingredient.measurement
             )
             .font(Font.AppTheme.boldRegular)
             .foregroundColor(Color.AppTheme.textPrimary)
-            .padding(.trailing, 10)
+            .frame(width: 75, alignment: .leading)
+            
+            Text(
+                ingredient.name.capitalized
+            )
+            .font(Font.AppTheme.regular)
+            .foregroundColor(Color.AppTheme.textPrimary)
+            .multilineTextAlignment(.leading)
+            Spacer()
         }
         .padding(.vertical, 20)
-        .overlay(alignment: .bottom) {
-            Rectangle()
-                .fill(Color.AppTheme.darkBlue.opacity(0.2))
-                .frame(height: 1)
-        }
+        Divider()
+            .overlay(Color.AppTheme.darkYellow.opacity(0.5))
+        
     }
 }
 
@@ -82,62 +79,67 @@ struct AlternativeIngredientRow: View {
     let ingredient: Ingredient
     @State private var dragOffset: CGFloat = 0
     @State private var showingAlternative = false
-
+    
     var body: some View {
         HStack {
-            Text("«")
-                .foregroundColor(Color.AppTheme.textSecondary)
-
+            Text(
+                showingAlternative
+                ? (ingredient.alternativeMeasurement ?? "")
+                : ingredient.measurement
+            )
+            .font(Font.AppTheme.boldRegular)
+            .frame(width: 75, alignment: .leading)
+            
             Text(
                 showingAlternative
                 ? (ingredient.alternative ?? "") : ingredient.name.capitalized
             )
             .font(Font.AppTheme.regular)
-            .foregroundColor(Color.AppTheme.textSecondary)
-            .padding(.leading, 10)
-
+            .multilineTextAlignment(.leading)
             Spacer()
-
-            Text(
-                showingAlternative
-                    ? (ingredient.alternativeMeasurement ?? "")
-                    : ingredient.measurement
-            )
-            .font(Font.AppTheme.boldRegular)
-            .foregroundColor(Color.AppTheme.textSecondary)
-            .padding(.trailing, 10)
-
-            Text("»")
-                .foregroundColor(Color.AppTheme.textSecondary)
-
-        }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 20)
-        .background(
-            RoundedRectangle(cornerRadius: 12, style: .continuous)
-                .fill(
-                    Color.AppTheme.darkPink.opacity(0.7)
-                )
-        )
-        .padding(.top, 15)
-        .offset(x: dragOffset)
-        .gesture(
-            DragGesture()
-                .onChanged { gesture in
-                    dragOffset = gesture.translation.width
-                }
-                .onEnded { gesture in
-                    if abs(gesture.translation.width) > 80 {
+            
+            Image(systemName: "arrow.left.arrow.right")
+                .padding(10)
+                .rotation3DEffect(
+                    .degrees(showingAlternative ? 180 : 0),
+                    axis: (x: 0.0, y: 1.0, z: 0.0) // Sumbu Y yang jadi poros putaran
+                )                .contentShape(Rectangle())
+                .onTapGesture {
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
                         showingAlternative.toggle()
                     }
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.6))
-                    {
-                        dragOffset = 0
-                    }
                 }
-        )
+        }
+        .foregroundColor(Color.AppTheme.darkYellow)
+        .padding(.vertical, 10)
+        Divider()
+            .overlay(Color.AppTheme.darkYellow.opacity(0.5))
     }
+    //        .background(
+    //            RoundedRectangle(cornerRadius: 12, style: .continuous)
+    //                .fill(
+    //                    Color.AppTheme.darkPink.opacity(0.7)
+    //                )
+    //        )
+    // .padding(.top, 15)
+    //.offset(x: dragOffset)
+    //        .gesture(
+    //            dragOffset(){
+    //                .onChanged { gesture in
+    //                    dragOffset = gesture.translation.width
+    //                }
+    //                .onEnded { gesture in
+    //                    if abs(gesture.translation.width) > 80 {
+    //                        showingAlternative.toggle()
+    //                    }
+    //                    withAnimation(.spring(response: 0.3, dampingFraction: 0.6))
+    //                    {
+    //                        dragOffset = 0
+    //                    }
+    //                }
+    //        )
 }
+
 
 #Preview {
     IngredientList(
