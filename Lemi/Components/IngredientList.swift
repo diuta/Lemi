@@ -17,10 +17,18 @@ struct IngredientList: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 0) {
                 if (!hasCompletedOnboarding && isOnboardingVisible) {
-                    HStack {
-                        Text("iconnya")
-                            .foregroundColor(Color.AppTheme.textSecondary)
-                        Text("tulisan yang bilang kalo alternative ingredients available")
+                    HStack (spacing: 20) {
+                        Image(systemName: "arrow.left.arrow.right")
+                            .padding(10)
+                            .foregroundStyle(Color.AppTheme.darkBlue)
+                        VStack (alignment: .leading) {
+                            Text("Don't have the ingredients?")
+                                .font(Font.AppTheme.regular.bold())
+                                .foregroundStyle(Color.AppTheme.darkBlue)
+                            Text("Tap on the ‘swap’ button and we’ll give you the alternative ingredients for your dish!")
+                                .font(Font.AppTheme.caption)
+                                .foregroundStyle(Color.AppTheme.darkBlue)
+                        }
                         Spacer()
                         Button (
                             action: {
@@ -30,10 +38,13 @@ struct IngredientList: View {
                                 UserDefaults.standard.set(true, forKey: "completedOnboarding")
                             }
                         }){
-                           Image(systemName: "xmark.circle" )
+                           Image(systemName: "xmark" )
+                                .foregroundStyle(Color.AppTheme.darkBlue)
                         }
                     }
-                    .background(Color.AppTheme.normalBlue.opacity(0.1))
+                    .padding(20)
+                    .cornerRadius(20)
+                    .background(Color.AppTheme.activeBlue)
                 }
                 ForEach(entry.ingredients, id: \.self) { ingredient in
                     if ingredient.alternative != nil {
