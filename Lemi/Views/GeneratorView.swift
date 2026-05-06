@@ -118,7 +118,7 @@ struct GeneratorView: View {
                     .font(Font.AppTheme.screenTitle)
                     .foregroundColor(Color.AppTheme.textPrimary)
 
-            }
+            } 
         }
     }
 }

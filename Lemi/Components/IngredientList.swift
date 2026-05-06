@@ -19,7 +19,6 @@ struct IngredientList: View {
                 if (!hasCompletedOnboarding && isOnboardingVisible) {
                     HStack (spacing: 20) {
                         Image(systemName: "arrow.left.arrow.right")
-                            .padding(10)
                             .foregroundStyle(Color.AppTheme.darkBlue)
                         VStack (alignment: .leading) {
                             Text("Don't have the ingredients?")

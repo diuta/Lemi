@@ -24,7 +24,7 @@ struct CardMenu: View {
             } placeholder: {
                 Rectangle()
                     .fill(Color.gray.opacity(0.15))
-                    .frame(maxWidth: .infinity, maxHeight: 225)
+                    .frame(height: 225)
                     .overlay { ProgressView() }
             }
             .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -35,14 +35,13 @@ struct CardMenu: View {
                 .multilineTextAlignment(.leading)
 
             LabelPreference(entry: entry)
-                .frame(width: 250)
+                .frame(width: 280)
 
         }
         .padding(16)
         .background(Color.AppTheme.lightYellow)
         .frame(maxWidth: .infinity)
         .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
-        .shadow(color: .black.opacity(0.08), radius: 15, x: 0, y: 8)
     }
 
 }

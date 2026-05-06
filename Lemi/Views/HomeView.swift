@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 
 struct HomeView: View {
-    @State private var loadedRecipes: [RecipeModel] = []
+    @State private var loadedRecipes: [RecipeModel] = RecipeDataLoader.decodeRecipes()
     @State private var toGenerator: Bool = false
 
     @Query private var savedBookmarks: [BookmarkedRecipeID]
@@ -58,16 +58,23 @@ struct HomeView: View {
                     }
 
                     ZStack {
-                        ScrollView {
+                        ScrollView(showsIndicators: false) {
                             ForEach(savedBookmarks) { bookmark in
-                                if let fullRecipe = getRecipe(for: bookmark.id) {
+                                if let fullRecipe = getRecipe(for: bookmark.id)
+                                {
                                     NavigationLink(
-                                        destination: RecipeView(entry: fullRecipe)
+                                        destination: RecipeView(
+                                            entry: fullRecipe
+                                        )
                                     ) {
                                         CardMenu(entry: fullRecipe)
                                     }
                                 }
                             }
+                            VStack{
+                                Spacer()
+                            }
+                            .padding(.bottom, 100)
                         }
                         .listStyle(.plain)
 
@@ -76,7 +83,7 @@ struct HomeView: View {
                             MainButton("Generate Menu", iconName: "sparkles") {
                                 toGenerator = true
                             }
-                            
+
                         }
                     }
                 }
@@ -87,11 +94,6 @@ struct HomeView: View {
             }
         }
         .background(Color.AppTheme.mainBackground)
-        .onAppear {
-            if loadedRecipes.isEmpty {
-                loadedRecipes = RecipeDataLoader.decodeRecipes()
-            }
-        }
     }
 
     private func getRecipe(for id: Int) -> RecipeModel? {

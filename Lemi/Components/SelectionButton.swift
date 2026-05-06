@@ -35,6 +35,8 @@ struct SelectedView: View {
     var body: some View {
         Text(text)
             .font(Font.AppTheme.content)
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
             .foregroundColor(
                 bgColor
             )
@@ -64,6 +66,8 @@ struct DefaultView: View {
     var body: some View {
         Text(text)
             .font(Font.AppTheme.content)
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
             .foregroundColor(
                 .AppTheme.mainBackground
             )
