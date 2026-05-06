@@ -81,9 +81,12 @@ struct RecipeView: View {
     }
 
     private func toggleBookmark() {
-        if let bookmarkToDelete = savedBookmarks.first(where: { $0.id == entry.id }) {
+        if let bookmarkToDelete = savedBookmarks.first(where: {
+            $0.id == entry.id }) {
+            print("test gamasuk")
             modelContext.delete(bookmarkToDelete)
         } else {
+            print("test masuk")
             let newBookmark = BookmarkedRecipeID(id: entry.id)
             modelContext.insert(newBookmark)
         }
