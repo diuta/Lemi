@@ -11,70 +11,76 @@ import SwiftUI
 extension Color {
     struct AppTheme {
         // Background
-        static let mainBackground = Color(red: 0.96, green: 0.96, blue: 0.94)  // Soft off-white
+        static let mainBackground = Color(hex: "#FFFFF7")
 
         // Difficulty (Pink)
-        static let lightPink = Color(hex: "#FF88CF")
+        static let activePink = Color(hex: "#CC6DA6")
+        static let normalPink = Color(hex: "#FF88CF")
         static let darkPink = Color(hex: "#CC6DA6")
 
         // Main Ingredient (Blue)
-        static let lightBlue = Color(red: 0.05, green: 0.53, blue: 0.92)
-        static let darkBlue = Color(red: 0.03, green: 0.40, blue: 0.72)  // Darker blue for pills
+        static let activeBlue = Color(hex: "#D9ECFA")
+        static let normalBlue = Color(hex: "#0176CA")
+        static let darkBlue = Color(hex: "#0162A8")
 
         // Taste Profile (Green)
-        static let lightGreen = Color(red: 0.07, green: 0.68, blue: 0.26)
-        static let darkGreen = Color(red: 0.05, green: 0.48, blue: 0.18)  // Darker green for pills
+        static let normalGreen = Color(hex: "#00AF47")
+        static let darkGreen = Color(hex: "#008335")
 
+        static let activeYellow = Color(hex: "#FFEFBB")
         static let normalYellow = Color(hex: "#FFCC23")
         static let darkYellow = Color(hex: "#BF991A")
         static let darkerYellow = Color(hex: "#59470C")
 
         // Text Colors
-        static let textPrimary = Color.black
-        static let textSecondary = Color.white
+        static let textPrimary = Color(hex: "#151515")
+        static let textSecondary = Color(hex: "#FFFFF7")
     }
 }
 
 extension Font {
     struct AppTheme {
-        // Used for the main "Choose your ..." header
         static let screenTitle = Font.system(
-            size: 32,
+            size: 40,
             weight: .bold,
             design: .default
         )
 
-        // Used for card titles like "Difficulty", "Main Ingredient"
         static let sectionHeader = Font.system(
             size: 24,
             weight: .bold,
             design: .default
         )
-        
-        // Used for the main action button ("Generate")
-        static let buttonText = Font.system(
+
+        static let sectionTitle = Font.system(
             size: 18,
             weight: .bold,
             design: .default
         )
-        
-        static let listName = Font.system(
+
+        static let regular = Font.system(
             size: 16,
             weight: .regular,
             design: .default
         )
-        
-        static let ingredientMeasurement = Font.system(
-            size: 16,
-            weight: .semibold,
-            design: .default
-        )
-        
-        // Used for the text inside the selectable pills
-        static let pillText = Font.system(
+
+        static let boldRegular = Font.system(
             size: 16,
             weight: .bold,
             design: .default
         )
+
+        static let content = Font.system(
+            size: 14,
+            weight: .bold,
+            design: .default
+        )
+
+        static let caption = Font.system(
+            size: 11,
+            weight: .regular,
+            design: .default
+        )
+        .italic()
     }
 }

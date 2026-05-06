@@ -22,14 +22,10 @@ struct GeneratorView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                Text("Choose your ...")
-                    .font(Font.AppTheme.screenTitle)
-                    .foregroundColor(Color.AppTheme.textPrimary)
-                    .padding()
                 VStack(spacing: 15) {
                     PreferenceCard(
                         title: "Difficulty",
-                        bgColor: Color.AppTheme.lightPink,
+                        bgColor: Color.AppTheme.normalPink,
                         bgImageName: "DifficultyAsset"
                     ) {
                         HStack(spacing: 10) {
@@ -46,10 +42,10 @@ struct GeneratorView: View {
                             }
                         }
                     }
-                    
+
                     PreferenceCard(
                         title: "Main Ingredient",
-                        bgColor: Color.AppTheme.lightBlue,
+                        bgColor: Color.AppTheme.normalBlue,
                         bgImageName: "IngredientAsset"
                     ) {
                         HStack(spacing: 10) {
@@ -66,10 +62,10 @@ struct GeneratorView: View {
                             }
                         }
                     }
-                    
+
                     PreferenceCard(
                         title: "Taste Profile",
-                        bgColor: Color.AppTheme.lightGreen,
+                        bgColor: Color.AppTheme.normalGreen,
                         bgImageName: "TasteAsset"
                     ) {
                         HStack(spacing: 10) {
@@ -114,6 +110,16 @@ struct GeneratorView: View {
                 Text(
                     "There are no combinations available yet. Please select another set of preferences."
                 )
+            }
+            .safeAreaPadding(10)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Choose your ...")
+                        .font(Font.AppTheme.screenTitle)
+                        .foregroundColor(Color.AppTheme.textPrimary)
+
+                }
             }
         }
     }

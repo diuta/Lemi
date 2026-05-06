@@ -25,7 +25,7 @@ struct RecipeStepsSection: View {
 
                         VStack(alignment: .leading) {
                             Text(d)
-                                .font(Font.AppTheme.listName)
+                                .font(Font.AppTheme.regular)
                                 .padding(.vertical, 15)
 
                             Divider()
