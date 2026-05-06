@@ -96,7 +96,7 @@ struct GeneratorView: View {
                     }
                 }
             }
-            .padding(16)
+            .padding(.horizontal, 10)
         }
         .background(Color.AppTheme.mainBackground.ignoresSafeArea())
         .navigationDestination(item: $generatedRecipe) {
@@ -118,7 +118,7 @@ struct GeneratorView: View {
                     .font(Font.AppTheme.screenTitle)
                     .foregroundColor(Color.AppTheme.textPrimary)
 
-            } 
+            }
         }
     }
 }
