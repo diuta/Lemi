@@ -29,7 +29,6 @@ struct IngredientList: View {
                                 .font(Font.AppTheme.caption)
                                 .foregroundStyle(Color.AppTheme.darkBlue)
                         }
-                        Spacer()
                         Button (
                             action: {
                             withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
@@ -43,8 +42,8 @@ struct IngredientList: View {
                         }
                     }
                     .padding(20)
-                    .cornerRadius(20)
                     .background(Color.AppTheme.activeBlue)
+                    .cornerRadius(20)
                 }
                 ForEach(entry.ingredients, id: \.self) { ingredient in
                     if ingredient.alternative != nil {

@@ -68,25 +68,19 @@ struct HomeView: View {
                                     }
                                 }
                             }
-                            .padding(16)
                         }
                         .listStyle(.plain)
 
                         VStack {
                             Spacer()
-                            HStack {
-                                Spacer()
-                                MainButton("Generate Menu", iconName: "sparkles") {
-                                    toGenerator = true
-                                }
-                                .frame(width: 200)
+                            MainButton("Generate Menu", iconName: "sparkles") {
+                                toGenerator = true
                             }
-                            .padding(.trailing, 20)
-                            .padding(.bottom, 30)
+                            
                         }
                     }
                 }
-                .padding(16)
+                .padding(.horizontal, 20)
                 .navigationDestination(isPresented: $toGenerator) {
                     GeneratorView()
                 }
