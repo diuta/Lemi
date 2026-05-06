@@ -84,8 +84,6 @@ struct DefaultView: View {
         SelectionButton(text: "Selected", bgColor: .pink, isSelected: true) {}
         SelectionButton(text: "Unselected", bgColor: .pink, isSelected: false) {
         }
-        //        SelectedView(text: "test", bgColor: Color(hex: "#0169B3"))
-        //        DefaultView(text: "test", bgColor: Color(hex: "#0169B3"))
     }
     .padding()
 }

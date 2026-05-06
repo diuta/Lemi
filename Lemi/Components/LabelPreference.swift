@@ -12,24 +12,21 @@ struct LabelPreference: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            // Difficulty (Pink)
             TagPill(
                 text: entry.difficulty.rawValue.capitalized,
-                bgColor: Color.AppTheme.lightPink,
+                bgColor: Color.AppTheme.normalPink,
                 textColor: Color.AppTheme.textSecondary
             )
             
-            // Main Ingredient (Blue)
             TagPill(
                 text: entry.mainIngredient.rawValue.capitalized,
-                bgColor: Color.AppTheme.lightBlue,
+                bgColor: Color.AppTheme.normalBlue,
                 textColor: Color.AppTheme.textSecondary
             )
             
-            // Taste Profile (Green)
             TagPill(
                 text: entry.tasteProfile.rawValue.capitalized,
-                bgColor: Color.AppTheme.lightGreen,
+                bgColor: Color.AppTheme.normalGreen,
                 textColor: Color.AppTheme.textSecondary
             )
         }

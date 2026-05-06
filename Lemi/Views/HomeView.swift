@@ -22,25 +22,25 @@ struct HomeView: View {
                     VStack(spacing: 10) {
                         Text("🥺")
                             .font(.system(size: 100))
-                        Text("You don’t have any saved recipes yet")
+                        Text("You don't have any saved recipes yet")
                             .font(.AppTheme.sectionHeader)
                             .multilineTextAlignment(.center)
                     }
-                    
+
                     VStack(spacing: 10) {
-                        Text(
-                            "LEMI help you to create one!"
-                        ).font(.AppTheme.listName)
-                        
+                        Text("LEMI help you to create one!")
+                            .font(.AppTheme.sectionTitle)
+
                         MainButton("Generate Menu", iconName: "sparkles") {
                             toGenerator = true
                         }
                     }
                 }
                 .padding(16)
-                
-            
-                
+                .navigationDestination(isPresented: $toGenerator) {
+                    GeneratorView()
+                }
+
             } else {
                 VStack(alignment: .leading, spacing: 25) {
                     VStack(alignment: .leading, spacing: 8) {
@@ -54,8 +54,9 @@ struct HomeView: View {
                                 .font(.AppTheme.screenTitle)
                         }
                         Text("All your saved recipes are here!")
-                            .font(.AppTheme.listName)
+                            .font(.AppTheme.regular)
                     }
+
                     ZStack {
                         ScrollView {
                             ForEach(savedBookmarks) { bookmark in
@@ -63,7 +64,6 @@ struct HomeView: View {
                                     NavigationLink(
                                         destination: RecipeView(entry: fullRecipe)
                                     ) {
-                                        // Extract the UI into a clean subview
                                         CardMenu(entry: fullRecipe)
                                     }
                                 }
@@ -71,7 +71,7 @@ struct HomeView: View {
                             .padding(16)
                         }
                         .listStyle(.plain)
-                        
+
                         VStack {
                             Spacer()
                             HStack {
@@ -80,13 +80,10 @@ struct HomeView: View {
                                     toGenerator = true
                                 }
                             }
-                            
                             .padding(.trailing, 20)
                             .padding(.bottom, 30)
                         }
-                        
                     }
-                    
                 }
                 .padding(16)
                 .navigationDestination(isPresented: $toGenerator) {
@@ -100,8 +97,8 @@ struct HomeView: View {
                 loadedRecipes = RecipeDataLoader.decodeRecipes()
             }
         }
-
     }
+
     private func getRecipe(for id: Int) -> RecipeModel? {
         return loadedRecipes.first(where: { $0.id == id })
     }

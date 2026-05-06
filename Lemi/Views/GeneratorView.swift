@@ -20,106 +20,104 @@ struct GeneratorView: View {
     let tastes = TasteProfile.allCases
 
     var body: some View {
-        NavigationStack {
-            VStack(alignment: .leading) {
-                VStack(spacing: 15) {
-                    PreferenceCard(
-                        title: "Difficulty",
-                        bgColor: Color.AppTheme.normalPink,
-                        bgImageName: "DifficultyAsset"
-                    ) {
-                        HStack(spacing: 10) {
-                            ForEach(difficulties, id: \.self) { difficulty in
-                                SelectionButton(
-                                    text: difficulty.rawValue.capitalized,
-                                    bgColor: Color.AppTheme.darkPink,
-                                    isSelected: selectedDifficulty == difficulty
-                                ) {
-                                    selectedDifficulty =
-                                        selectedDifficulty == difficulty
-                                        ? nil : difficulty
-                                }
+        VStack(alignment: .leading) {
+            VStack(spacing: 15) {
+                PreferenceCard(
+                    title: "Difficulty",
+                    bgColor: Color.AppTheme.normalPink,
+                    bgImageName: "DifficultyAsset"
+                ) {
+                    HStack(spacing: 10) {
+                        ForEach(difficulties, id: \.self) { difficulty in
+                            SelectionButton(
+                                text: difficulty.rawValue.capitalized,
+                                bgColor: Color.AppTheme.darkPink,
+                                isSelected: selectedDifficulty == difficulty
+                            ) {
+                                selectedDifficulty =
+                                    selectedDifficulty == difficulty
+                                    ? nil : difficulty
                             }
-                        }
-                    }
-
-                    PreferenceCard(
-                        title: "Main Ingredient",
-                        bgColor: Color.AppTheme.normalBlue,
-                        bgImageName: "IngredientAsset"
-                    ) {
-                        HStack(spacing: 10) {
-                            ForEach(ingredients, id: \.self) { ingredient in
-                                SelectionButton(
-                                    text: ingredient.rawValue.capitalized,
-                                    bgColor: Color.AppTheme.darkBlue,
-                                    isSelected: selectedIngredient == ingredient
-                                ) {
-                                    selectedIngredient =
-                                        selectedIngredient == ingredient
-                                        ? nil : ingredient
-                                }
-                            }
-                        }
-                    }
-
-                    PreferenceCard(
-                        title: "Taste Profile",
-                        bgColor: Color.AppTheme.normalGreen,
-                        bgImageName: "TasteAsset"
-                    ) {
-                        HStack(spacing: 10) {
-                            ForEach(tastes, id: \.self) { taste in
-                                SelectionButton(
-                                    text: taste.rawValue.capitalized,
-                                    bgColor: Color.AppTheme.darkGreen,
-                                    isSelected: selectedTaste == taste
-                                ) {
-                                    selectedTaste =
-                                        selectedTaste == taste ? nil : taste
-                                }
-                            }
-                        }
-
-                    }
-
-                    Spacer()
-
-                    MainButton("Generate Menu", iconName: "bookmark.fill") {
-                        if let result = RecipeGenerator.generate(
-                            taste: selectedTaste,
-                            difficulty: selectedDifficulty,
-                            ingredient: selectedIngredient
-                        ) {
-                            generatedRecipe = result
-                        } else {
-                            showErrorAlert = true
                         }
                     }
                 }
-                .padding(16)
-            }
-            .background(Color.AppTheme.mainBackground.ignoresSafeArea())
-            .navigationDestination(item: $generatedRecipe) {
-                recipe in
-                RecipeView(entry: recipe)
-            }
-            .alert("No Recipe Found", isPresented: $showErrorAlert) {
-                Button("Got it", role: .cancel) {}
-            } message: {
-                Text(
-                    "There are no combinations available yet. Please select another set of preferences."
-                )
-            }
-            .safeAreaPadding(10)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("Choose your ...")
-                        .font(Font.AppTheme.screenTitle)
-                        .foregroundColor(Color.AppTheme.textPrimary)
+
+                PreferenceCard(
+                    title: "Main Ingredient",
+                    bgColor: Color.AppTheme.normalBlue,
+                    bgImageName: "IngredientAsset"
+                ) {
+                    HStack(spacing: 10) {
+                        ForEach(ingredients, id: \.self) { ingredient in
+                            SelectionButton(
+                                text: ingredient.rawValue.capitalized,
+                                bgColor: Color.AppTheme.darkBlue,
+                                isSelected: selectedIngredient == ingredient
+                            ) {
+                                selectedIngredient =
+                                    selectedIngredient == ingredient
+                                    ? nil : ingredient
+                            }
+                        }
+                    }
+                }
+
+                PreferenceCard(
+                    title: "Taste Profile",
+                    bgColor: Color.AppTheme.normalGreen,
+                    bgImageName: "TasteAsset"
+                ) {
+                    HStack(spacing: 10) {
+                        ForEach(tastes, id: \.self) { taste in
+                            SelectionButton(
+                                text: taste.rawValue.capitalized,
+                                bgColor: Color.AppTheme.darkGreen,
+                                isSelected: selectedTaste == taste
+                            ) {
+                                selectedTaste =
+                                    selectedTaste == taste ? nil : taste
+                            }
+                        }
+                    }
 
                 }
+
+                Spacer()
+
+                MainButton("Generate Menu", iconName: "bookmark.fill") {
+                    if let result = RecipeGenerator.generate(
+                        taste: selectedTaste,
+                        difficulty: selectedDifficulty,
+                        ingredient: selectedIngredient
+                    ) {
+                        generatedRecipe = result
+                    } else {
+                        showErrorAlert = true
+                    }
+                }
+            }
+            .padding(16)
+        }
+        .background(Color.AppTheme.mainBackground.ignoresSafeArea())
+        .navigationDestination(item: $generatedRecipe) {
+            recipe in
+            RecipeView(entry: recipe)
+        }
+        .alert("No Recipe Found", isPresented: $showErrorAlert) {
+            Button("Got it", role: .cancel) {}
+        } message: {
+            Text(
+                "There are no combinations available yet. Please select another set of preferences."
+            )
+        }
+        .safeAreaPadding(10)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Choose your ...")
+                    .font(Font.AppTheme.screenTitle)
+                    .foregroundColor(Color.AppTheme.textPrimary)
+
             }
         }
     }

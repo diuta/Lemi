@@ -24,7 +24,6 @@ struct IngredientList: View {
                         Spacer()
                         Button (
                             action: {
-                            // 4. Smoothly hide the section when tapped
                             withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
                                 
                                 isOnboardingVisible = false
@@ -34,7 +33,7 @@ struct IngredientList: View {
                            Image(systemName: "xmark.circle" )
                         }
                     }
-                    .background(Color.AppTheme.lightBlue.opacity(0.1))
+                    .background(Color.AppTheme.normalBlue.opacity(0.1))
                 }
                 ForEach(entry.ingredients, id: \.self) { ingredient in
                     if ingredient.alternative != nil {
