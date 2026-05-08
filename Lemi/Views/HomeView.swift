@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 
 struct HomeView: View {
-    @State private var loadedRecipes: [RecipeModel] = []
+    @State private var loadedRecipes: [RecipeModel] = RecipeDataLoader.decodeRecipes()
     @State private var toGenerator: Bool = false
 
     @Query private var savedBookmarks: [BookmarkedRecipeID]
@@ -58,46 +58,42 @@ struct HomeView: View {
                     }
 
                     ZStack {
-                        ScrollView {
+                        ScrollView(showsIndicators: false) {
                             ForEach(savedBookmarks) { bookmark in
-                                if let fullRecipe = getRecipe(for: bookmark.id) {
+                                if let fullRecipe = getRecipe(for: bookmark.id)
+                                {
                                     NavigationLink(
-                                        destination: RecipeView(entry: fullRecipe)
+                                        destination: RecipeView(
+                                            entry: fullRecipe
+                                        )
                                     ) {
                                         CardMenu(entry: fullRecipe)
                                     }
                                 }
                             }
-                            .padding(16)
+                            VStack{
+                                Spacer()
+                            }
+                            .padding(.bottom, 100)
                         }
                         .listStyle(.plain)
 
                         VStack {
                             Spacer()
-                            HStack {
-                                Spacer()
-                                MainButton("Generate Menu", iconName: "sparkles") {
-                                    toGenerator = true
-                                }
-                                .frame(width: 200)
+                            MainButton("Generate Menu", iconName: "sparkles") {
+                                toGenerator = true
                             }
-                            .padding(.trailing, 20)
-                            .padding(.bottom, 30)
+
                         }
                     }
                 }
-                .padding(16)
+                .padding(.horizontal, 20)
                 .navigationDestination(isPresented: $toGenerator) {
                     GeneratorView()
                 }
             }
         }
         .background(Color.AppTheme.mainBackground)
-        .onAppear {
-            if loadedRecipes.isEmpty {
-                loadedRecipes = RecipeDataLoader.decodeRecipes()
-            }
-        }
     }
 
     private func getRecipe(for id: Int) -> RecipeModel? {

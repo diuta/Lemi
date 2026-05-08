@@ -96,7 +96,7 @@ struct GeneratorView: View {
                     }
                 }
             }
-            .padding(16)
+            .padding(.horizontal, 10)
         }
         .background(Color.AppTheme.mainBackground.ignoresSafeArea())
         .navigationDestination(item: $generatedRecipe) {

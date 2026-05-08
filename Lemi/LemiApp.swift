@@ -7,7 +7,6 @@ struct LemiApp: App {
         WindowGroup {
             HomeView()
         }
-        // This spins up the SwiftData database for your bookmark IDs
         .modelContainer(for: BookmarkedRecipeID.self)
     }
 }

@@ -11,7 +11,7 @@ struct LabelPreference: View {
     let entry: RecipeModel
 
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: 8) {
             TagPill(
                 text: entry.difficulty.rawValue.capitalized,
                 bgColor: Color.AppTheme.normalPink,
@@ -40,10 +40,10 @@ struct TagPill: View {
     
     var body: some View {
         Text(text)
-            .font(.system(size: 15, weight: .bold))
+            .font(.system(size: 12, weight: .bold))
             .foregroundColor(textColor)
-            .padding(.horizontal, 16)
-            .padding(.vertical, 8)
+            .padding(.horizontal, 15)
+            .padding(.vertical, 5)
             .frame(maxWidth: .infinity)
             .background(bgColor)
             .clipShape(Capsule())
